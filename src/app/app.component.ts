@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 
-import {HomePage} from '../pages/pages';
+import {HomePage, TermsPage} from '../pages/pages';
 
 
 @Component({
@@ -29,6 +29,10 @@ export class MyApp {
       Splashscreen.hide();
     });
   }
+
+  goToTerms(): void {
+    this.nav.push(TermsPage);
+}
 
 
 }
