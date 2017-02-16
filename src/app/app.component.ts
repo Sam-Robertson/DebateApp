@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 
-import {HomePage, TermsPage} from '../pages/pages';
+import {HomePage, TermsPage, SettingsPage, LoginPage} from '../pages/pages';
 
 
 @Component({
@@ -32,6 +32,13 @@ export class MyApp {
 
   goToTerms(): void {
     this.nav.push(TermsPage);
+}
+
+goToSettings(): void {
+    this.nav.push(SettingsPage)
+}
+goToLogin(): void {
+    this.nav.push(LoginPage)
 }
 
 

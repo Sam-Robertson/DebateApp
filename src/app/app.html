@@ -9,7 +9,8 @@
     <ion-list>
       <button menuClose ion-item>Home</button>
       <button menuClose (click)="goToTerms()" ion-item>Terms</button>
-      <button menuClose ion-item>Settings</button>
+      <button menuClose ion-item (click)="goToSettings()">Settings</button>
+      <button menuClose ion-item (click)="goToLogin">Login</button>
     </ion-list>
   </ion-content>
 
