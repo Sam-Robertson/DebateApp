@@ -31,9 +31,27 @@ export class SettingsPage {
 }
 
 @Component ({
- templateUrl: 'p-image.html'
+  template: `
+ <ion-header>
+
+ <ion-navbar>
+ <ion-title>Add New Profile Image</ion-title>
+    </ion-navbar>
+
+    </ion-header>
+
+
+    <ion-content padding>
+
+  <button ion-button>
+  <span ion-text color="primary" showWhen="ios">Cancel</span>
+  <ion-icon name="md-close" showWhen="android, windows"></ion-icon>
+  </button>
+
+  </ion-content>
+  `
 })
-class ImagePage{
+export class ImagePage{
 
   constructor(private params: NavParams) {
   }
