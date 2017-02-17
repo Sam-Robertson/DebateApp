@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, } from 'ionic-angular';
 
+import { AuthService } from '../../providers/auth-service';
 /*
   Generated class for the Login page.
 
@@ -13,10 +14,15 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class LoginPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  constructor(public navCtrl: NavController, public navParams: NavParams, private _auth: AuthService) {}
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
+
+  signInWithFacebook(): void {
+    this._auth.signInWithGoogle()
+      .then(() => this.onSignInSuccess());
   }
 
+  private onSignInSuccess(): void {
+    console.log("Facebook display name ",this._auth.displayName());
+  }
 }
