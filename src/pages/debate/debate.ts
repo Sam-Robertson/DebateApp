@@ -12,8 +12,11 @@ import { NavController, NavParams } from 'ionic-angular';
   templateUrl: 'debate.html'
 })
 export class DebatePage {
+  topic: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.topic = this.navParams.data;
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DebatePage');
