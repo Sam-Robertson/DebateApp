@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
+import {ModalController} from 'ionic-angular';
 
 
 @Component({
@@ -9,7 +10,7 @@ import { AlertController } from 'ionic-angular';
 })
 export class SettingsPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController) {}
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public modalCtrl: ModalController) { }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SettingsPage');
@@ -22,7 +23,20 @@ export class SettingsPage {
     });
     alert.present();
   }
+  addProfileImage(){
+    let modal = this.modalCtrl.create(ImagePage);
+    modal.present();
+  }
 
+}
+
+@Component ({
+ templateUrl: 'p-image.html'
+})
+class ImagePage{
+
+  constructor(private params: NavParams) {
+  }
 }
 
 
