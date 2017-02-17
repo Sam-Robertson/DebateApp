@@ -20,7 +20,7 @@ export class HomePage {
     console.log('ionViewDidLoad HomePage');
   }
 
-  navToSettings(): void {
+  goToSettings(): void {
     this.navCtrl.push(SettingsPage);
   }
 
