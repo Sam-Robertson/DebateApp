@@ -1,3 +1,30 @@
 page-debate {
 
 }
+
+#pro-con-container {
+  text-align: center;
+}
+
+.pro-con-buttons {
+  margin: 25px 9px 20px 9px;
+  width: 150px;
+}
+
+#con-side {
+  float: right;
+}
+
+#pro-side {
+  float: left;
+}
+
+.con-data {
+  text-align: left;
+  margin-right: 53px;
+}
+
+.pro-data {
+  text-align: left;
+  margin-left: 10px;
+}

@@ -14,5 +14,17 @@
 
 
 <ion-content padding>
-
+  <ion-title>Which side are you on?</ion-title>
+  <div id="pro-con-container">
+    <button class="pro-con-buttons" ion-button color="secondary" (click)="proClick()">Pro</button>
+    <button class="pro-con-buttons" ion-button color="danger" (click)="conClick()">Con</button>
+    <div id="pro-side">
+      <p class="pro-data">Pro Clicks: {{topic.proClicks}}</p>
+      <p class="pro-data">Pro Percent: {{topic.proPercent}}</p>
+    </div>
+    <div id="con-side">
+      <p class="con-data">Con Clicks: {{topic.conClicks}}</p>
+      <p class="con-data">Con Percent: {{topic.conPercent}}</p>
+    </div>
+  </div>
 </ion-content>
