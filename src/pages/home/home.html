@@ -1,17 +1,29 @@
 
 <ion-header>
-
-  <ion-navbar>
+  <ion-navbar color="primary">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-
-    <ion-title>Welcome to the Debate App!</ion-title>
+    <ion-title>The Debate App!</ion-title>
+    <button id="settingsButton"ion-button (click)="goToSettings()">
+      <ion-icon name="settings"></ion-icon>
+    </button>
   </ion-navbar>
 
 </ion-header>
 
-
 <ion-content padding>
-
+  <ion-title>Topics</ion-title>
+  <div class="topic-type" id="politics">
+    <ion-list-header>Politics</ion-list-header>
+    <div *ngFor="let topic of politicalTopics; let i = index;">
+      <button ion-item class="political-topic" id="political-topic{{i}}" (click)="openTopic($event, topic)">{{topic.name}}</button>
+    </div>
+  </div>
+  <div class="topic-type" id="entertainment">
+    <ion-list-header>Entertainment</ion-list-header>
+    <div *ngFor="let topic of entertainmentTopics; let i = index;">
+      <button ion-item class="entertainment-topic" id="entertainment-topic{{i}}" (click)="openTopic($event, topic)">{{topic.name}}</button>
+    </div>
+  </div>
 </ion-content>
