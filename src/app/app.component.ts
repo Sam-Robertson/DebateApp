@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 
-import {HomePage, TermsPage, SettingsPage, LoginPage} from '../pages/pages';
+import {HomePage, TermsPage, SettingsPage, LoginPage, DebatePage} from '../pages/pages';
 
 
 @Component({
@@ -39,6 +39,9 @@ goToSettings(): void {
 }
 goToLogin(): void {
     this.nav.push(LoginPage)
+}
+goToDebate(): void {
+    this.nav.push(DebatePage)
 }
 
 
