@@ -16,14 +16,34 @@
   <ion-title>Topics</ion-title>
   <div class="topic-type" id="politics">
     <ion-list-header>Politics</ion-list-header>
-    <div *ngFor="let topic of politicalTopics; let i = index;">
-      <button ion-item class="political-topic" id="political-topic{{i}}" (click)="openTopic($event, topic)">{{topic.name}}</button>
+    <div *ngFor="let topic of topics; let i = index;">
+      <div *ngIf="topic.type == 'Politics'">
+        <button ion-item class="topic" id="political-topic{{i}}" (click)="openTopic($event, topic)">{{topic.name}}</button>
+      </div>
     </div>
   </div>
   <div class="topic-type" id="entertainment">
     <ion-list-header>Entertainment</ion-list-header>
-    <div *ngFor="let topic of entertainmentTopics; let i = index;">
-      <button ion-item class="entertainment-topic" id="entertainment-topic{{i}}" (click)="openTopic($event, topic)">{{topic.name}}</button>
+    <div *ngFor="let topic of topics; let i = index;">
+      <div *ngIf="topic.type == 'Entertainment'">
+        <button ion-item class="topic" id="entertainment-topic{{i}}" (click)="openTopic($event, topic)">{{topic.name}}</button>
+      </div>
+    </div>
+  </div>
+  <div class="topic-type" id="science-and-technology">
+    <ion-list-header>Science and Technology</ion-list-header>
+    <div *ngFor="let topic of topics; let i = index;">
+      <div *ngIf="topic.type == 'Science and Technology'">
+        <button ion-item class="topic" id="science-and-technology-topic{{i}}" (click)="openTopic($event, topic)">{{topic.name}}</button>
+      </div>
+    </div>
+  </div>
+  <div class="topic-type" id="sex-and-gender">
+    <ion-list-header>Sex and Gender</ion-list-header>
+    <div *ngFor="let topic of topics; let i = index;">
+      <div *ngIf="topic.type == 'Sex and Gender'">
+        <button ion-item class="topic" id="sex-and-gender-topic{{i}}" (click)="openTopic($event, topic)">{{topic.name}}</button>
+      </div>
     </div>
   </div>
 </ion-content>
