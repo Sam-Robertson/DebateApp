@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import {ModalController} from 'ionic-angular';
+import {timeout} from "rxjs/operator/timeout";
 
 
 @Component({
@@ -21,18 +22,41 @@ export class SettingsPage {
     alert.present();
   }
   showColorAlert() {
-    let alert = this.alertCtrl.create({
+    let blind = this.alertCtrl.create({
       title: 'You Been Pranked!',
-      subTitle: 'Here at DebateApp we believe in color blind & non-color blind people living in harmony. This is why we make all our Websites and Apps colorblind friendly to begin with',
-      buttons: ['OK', 'I hate you']
+      subTitle: 'Here at DebateApp we believe in color blind & non-color blind people living in harmony. This is why we make all our Websites and Apps colorblind friendly to begin with.',
+      buttons: [
+          {text: 'OK'},
+        {text: 'I hate you',
+          handler: () => {
+            this.crashSite()
+          }
+        }
+      ]
     });
-    alert.present();
+    blind.present();
   }
-  // addProfileImage(){
-  //   let modal = this.modalCtrl.create(ImagePage);
-  //   modal.present();
-  // }
+   private crashSite() : void {
+     let check = this.alertCtrl.create({
+       title: 'Check Yourself Before You Wreck Yourself!',
+       subTitle: 'Check your Passwords and try again!',
+       buttons: [
+         {text: 'I go to my Death',
+           handler: () => {
+            this.dead()
+          }
+         }
+       ]
+     });
+     check.present();
+    };
+  private dead() : void {
 
+    setTimeout(function () {
+      // I need a function that will crash the website, but still allow it to run before the button is pressed
+      window.open("drugs and stuff")
+    }, 5000);
+  };
 }
 
 // @Component ({
@@ -46,11 +70,11 @@ export class SettingsPage {
 //     </ion-header>
 //
 //
-//     <ion-content padding>
+//     <ion-content>
 //
 //   <button ion-button>
-//   <span ion-text color="primary" showWhen="ios">Cancel</span>
-//   <ion-icon name="md-close" showWhen="android, windows"></ion-icon>
+//   <span showWhen="ios"> Cancel</span>
+//   <ion-icon showWhen="android, windows"></ion-icon>
 //   </button>
 //
 //   </ion-content>
