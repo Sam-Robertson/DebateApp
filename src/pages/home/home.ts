@@ -18,13 +18,6 @@ export class HomePage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public loadingController: LoadingController) {}
 
-  ionViewDidLoad() {
-    // let loader = this.loadingController.create({
-    //   content: 'Getting data...'
-    // });
-
-    console.log('ionViewDidLoad HomePage');
-  }
 
   goToSettings(): void {
     this.navCtrl.push(SettingsPage);

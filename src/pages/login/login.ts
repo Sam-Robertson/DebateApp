@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, } from 'ionic-angular';
-
+import { NavController, NavParams, Nav} from 'ionic-angular';
+import { TermsPage } from '../pages';
 import { AuthService } from '../../providers/auth-service';
 /*
   Generated class for the Login page.
@@ -14,15 +14,16 @@ import { AuthService } from '../../providers/auth-service';
 })
 export class LoginPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private _auth: AuthService) {}
+  constructor(public navCtrl: NavController, public nav: Nav, public navParams: NavParams, private _auth: AuthService) {}
 
 
-  signInWithFacebook(): void {
+  signInWithGoogle(): void {
     this._auth.signInWithGoogle()
-      .then(() => this.onSignInSuccess());
+      .then(() => {
+        console.log("Google display name ",this._auth.displayName());
+        this.nav.setRoot(TermsPage);
+    });
   }
 
-  private onSignInSuccess(): void {
-    console.log("Facebook display name ",this._auth.displayName());
-  }
+
 }
