@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
-
+import { AuthService } from '../providers/auth-service';
 import {HomePage, TermsPage, SettingsPage, LoginPage, DebatePage} from '../pages/pages';
 
 
@@ -14,7 +14,7 @@ export class MyApp {
   rootPage: any = HomePage;      //PUT ROOT PAGE IMPORTED HERE NOT IN QUOTES
 
 
-  constructor(public platform: Platform) {
+  constructor(public platform: Platform, private _auth: AuthService) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -25,13 +25,18 @@ export class MyApp {
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
+
+      /*if(!this._auth.authenticated) {
+          //route to login
+        this.nav.setRoot(LoginPage);
+      }*/
       StatusBar.styleDefault();
       Splashscreen.hide();
     });
   }
 
   goToTerms(): void {
-    this.nav.push(TermsPage);
+    this.nav.push(TermsPage)
 }
 
 goToSettings(): void {
@@ -42,6 +47,9 @@ goToLogin(): void {
 }
 goToDebate(): void {
     this.nav.push(DebatePage)
+}
+goToHome(): void {
+    this.nav.push(HomePage)
 }
 
 

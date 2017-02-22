@@ -18,13 +18,6 @@ export class HomePage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public loadingController: LoadingController) {}
 
-  ionViewDidLoad() {
-    // let loader = this.loadingController.create({
-    //   content: 'Getting data...'
-    // });
-
-    console.log('ionViewDidLoad HomePage');
-  }
 
   goToSettings(): void {
     this.navCtrl.push(SettingsPage);
@@ -34,33 +27,152 @@ export class HomePage {
     this.navCtrl.push(DebatePage, topic);
   }
 
-  politicalTopics: Object[] = [
+  topics: Object[] = [
     {
-      name: "Gun Control"
+      name: "Gun Control",
+      type: "Politics",
+      totalClicks: 0,
+      proClicks: 0,
+      conClicks: 0,
+      proPercent: "0%",
+      conPercent: "0%"
     },
     {
-      name: "Abortion"
+      name: "Drinking Age - Lower it?",
+      type: "Politics",
+      totalClicks: 0,
+      proClicks: 0,
+      conClicks: 0,
+      proPercent: "0%",
+      conPercent: "0%"
     },
     {
-      name: "Illegal Immigration"
+      name: "Abortion",
+      type: "Politics",
+      totalClicks: 0,
+      proClicks: 0,
+      conClicks: 0,
+      proPercent: "0%",
+      conPercent: "0%"
     },
     {
-      name: "Death Penalty"
+      name: "Under God in the Pledge",
+      type: "Politics",
+      totalClicks: 0,
+      proClicks: 0,
+      conClicks: 0,
+      proPercent: "0%",
+      conPercent: "0%"
     },
     {
-      name: "School Uniforms"
-    }
+      name: "Illegal Immigration",
+      type: "Politics",
+      totalClicks: 0,
+      proClicks: 0,
+      conClicks: 0,
+      proPercent: "0%",
+      conPercent: "0%"
+    },
+    {
+      name: "Death Penalty",
+      type: "Politics",
+      totalClicks: 0,
+      proClicks: 0,
+      conClicks: 0,
+      proPercent: "0%",
+      conPercent: "0%"
+    },
+    {
+      name: "School Uniforms",
+      type: "Politics",
+      totalClicks: 0,
+      proClicks: 0,
+      conClicks: 0,
+      proPercent: "0%",
+      conPercent: "0%"
+    },
+    {
+      name: "Recreational Marijuana",
+      type: "Politics",
+      totalClicks: 0,
+      proClicks: 0,
+      conClicks: 0,
+      proPercent: "0%",
+      conPercent: "0%"
+    },
+    {
+      name: "Batman vs. Superman",
+      type: "Entertainment",
+      totalClicks: 0,
+      proClicks: 0,
+      conClicks: 0,
+      proPercent: "0%",
+      conPercent: "0%"
+    },
+    {
+      name: "Video Games and Violence",
+      type: "Entertainment",
+      totalClicks: 0,
+      proClicks: 0,
+      conClicks: 0,
+      proPercent: "0%",
+      conPercent: "0%"
+    },
+    {
+      name: "Social Networking - Good or Bad?",
+      type: "Entertainment",
+      totalClicks: 0,
+      proClicks: 0,
+      conClicks: 0,
+      proPercent: "0%",
+      conPercent: "0%"
+    },
+    {
+      name: "Animal Testing",
+      type: "Science and Technology",
+      totalClicks: 0,
+      proClicks: 0,
+      conClicks: 0,
+      proPercent: "0%",
+      conPercent: "0%"
+    },
+    {
+      name: "Cell Phones - Are They Safe?",
+      type: "Science and Technology",
+      totalClicks: 0,
+      proClicks: 0,
+      conClicks: 0,
+      proPercent: "0%",
+      conPercent: "0%"
+    },
+    {
+      name: "Alternate Energy vs Fossil Fuels",
+      type: "Science and Technology",
+      totalClicks: 0,
+      proClicks: 0,
+      conClicks: 0,
+      proPercent: "0%",
+      conPercent: "0%"
+    },
+    {
+      name: "Gay Marriage",
+      type: "Sex and Gender",
+      totalClicks: 0,
+      proClicks: 0,
+      conClicks: 0,
+      proPercent: "0%",
+      conPercent: "0%"
+    },
+    {
+      name: "Prostitution - Legalize it?",
+      type: "Sex and Gender",
+      totalClicks: 0,
+      proClicks: 0,
+      conClicks: 0,
+      proPercent: "0%",
+      conPercent: "0%"
+    },
   ];
-
-  entertainmentTopics: Object[] = [
-    {
-      name: "Batman vs. Superman"
-    },
-    {
-      name: "Video Games and Violence"
-    }
-  ]
-
 }
 
 //http://www.createdebate.com/browse/debaterss/
