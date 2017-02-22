@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, Nav } from 'ionic-angular';
+import {HomePage} from "../pages";
 
 /*
   Generated class for the Terms page.
@@ -13,10 +14,10 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class TermsPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  constructor(public navCtrl: NavController, public navParams: NavParams, public nav: Nav) {}
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad TermsPage');
-  }
+ agree(): void {
+    this.nav.setRoot(HomePage);
+ }
 
 }

@@ -26,10 +26,10 @@ export class MyApp {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
 
-      /*if(!this._auth.authenticated) {
+      if(!this._auth.loggedInBool) {
           //route to login
         this.nav.setRoot(LoginPage);
-      }*/
+      }
       StatusBar.styleDefault();
       Splashscreen.hide();
     });
@@ -50,6 +50,10 @@ goToDebate(): void {
 }
 goToHome(): void {
     this.nav.push(HomePage)
+}
+logout(): void{
+    this._auth.signOut();
+    this.nav.setRoot(LoginPage);
 }
 
 
