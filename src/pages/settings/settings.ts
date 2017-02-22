@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import {ModalController} from 'ionic-angular';
-import {timeout} from "rxjs/operator/timeout";
+
 
 
 @Component({
@@ -54,8 +54,8 @@ export class SettingsPage {
 
     setTimeout(function () {
       // I need a function that will crash the website, but still allow it to run before the button is pressed
-      window.open("drugs and stuff")
-    }, 5000);
+      window.open("________You_Are_Now_Dead........Because_we_hate_you_____")
+    }, 2000);
   };
 }
 
