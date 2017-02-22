@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, Nav } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import {ModalController} from 'ionic-angular';
-
+import {LoginPage} from '../pages';
+import {AuthService} from '../../providers/auth-service';
 
 
 
@@ -12,7 +13,7 @@ import {ModalController} from 'ionic-angular';
 })
 export class SettingsPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public modalCtrl: ModalController) { }
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public modalCtrl: ModalController, public nav: Nav, private _auth: AuthService) { }
 
   showColorAlert() {
     let blind = this.alertCtrl.create({
@@ -28,6 +29,10 @@ export class SettingsPage {
       ]
     });
     blind.present();
+  }
+  logout(): void{
+    this._auth.signOut();
+    this.nav.setRoot(LoginPage);
   }
    private crashSite() : void {
      let check = this.alertCtrl.create({

@@ -42,9 +42,6 @@ export class MyApp {
 goToSettings(): void {
     this.nav.push(SettingsPage)
 }
-goToLogin(): void {
-    this._auth.resetPassword()
-}
 goToDebate(): void {
     this.nav.push(DebatePage)
 }
