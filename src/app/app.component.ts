@@ -36,7 +36,7 @@ export class MyApp {
   }
 
   goToTerms(): void {
-    this.nav.push(TermsPage);
+    this.nav.push(TermsPage)
 }
 
 goToSettings(): void {
@@ -47,6 +47,9 @@ goToLogin(): void {
 }
 goToDebate(): void {
     this.nav.push(DebatePage)
+}
+goToHome(): void {
+    this.nav.push(HomePage)
 }
 
 
