@@ -22,6 +22,7 @@ export class LoginPage {
       .then(() => {
         console.log("Google display name ",this._auth.displayName());
         this.nav.setRoot(TermsPage);
+
     });
   }
 
