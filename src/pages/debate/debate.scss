@@ -13,18 +13,20 @@ page-debate {
 
 #con-side {
   float: right;
+  width: 150px;
+  margin-right: 10px;
 }
 
 #pro-side {
   float: left;
+  width: 150px;
+  margin-left: 10px;
 }
 
 .con-data {
   text-align: left;
-  margin-right: 53px;
 }
 
 .pro-data {
   text-align: left;
-  margin-left: 10px;
 }

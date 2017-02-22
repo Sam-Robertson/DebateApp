@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import {SettingsPage} from "../settings/settings";
-import {LoadingController} from "ionic-angular/index";
-import {DebatePage} from "../debate/debate";
+import { SettingsPage } from "../settings/settings";
+import { LoadingController } from "ionic-angular/index";
+import { DebatePage } from "../debate/debate";
 
 /*
   Generated class for the Home page.
