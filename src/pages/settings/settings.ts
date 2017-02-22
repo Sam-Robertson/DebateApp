@@ -14,7 +14,7 @@ import {AuthService} from '../../providers/auth-service';
 export class SettingsPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public modalCtrl: ModalController, public nav: Nav, private _auth: AuthService) { }
-
+   username = this._auth.displayName();
   showColorAlert() {
     let blind = this.alertCtrl.create({
       title: 'You Been Pranked!',
@@ -37,7 +37,7 @@ export class SettingsPage {
    private crashSite() : void {
      let check = this.alertCtrl.create({
        title: 'Check Yourself Before You Wreck Yourself!',
-       subTitle: 'Check your Passwords and try again!',
+       subTitle: 'This Website will not be kind to you from now on!',
        buttons: [
          {text: 'I go to my Death',
            handler: () => {
@@ -51,8 +51,7 @@ export class SettingsPage {
   private dead() : void {
 
     setTimeout(function () {
-      // I need a function that will crash the website, but still allow it to run before the button is pressed
-      window.open("________You_Are_Now_Dead........Because_we_hate_you_____")
+      window.open("________You_Are_Now_Dead______Because_we_hate_you_____")
     }, 2000);
   };
 
