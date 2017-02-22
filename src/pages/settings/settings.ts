@@ -59,38 +59,5 @@ export class SettingsPage {
   };
 }
 
-// @Component ({
-//   template: `
-//  <ion-header>
-//
-//  <ion-navbar>
-//  <ion-title>Add New Profile Image</ion-title>
-//     </ion-navbar>
-//
-//     </ion-header>
-//
-//
-//     <ion-content>
-//
-//   <button ion-button>
-//   <span showWhen="ios"> Cancel</span>
-//   <ion-icon showWhen="android, windows"></ion-icon>
-//   </button>
-//
-//   </ion-content>
-//   `
-// })
-// export class ImagePage{
-//
-//   constructor(private params: NavParams) {
-//   }
-// }
-
-
-
-
-
-
-
 
 
