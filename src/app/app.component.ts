@@ -43,7 +43,7 @@ goToSettings(): void {
     this.nav.push(SettingsPage)
 }
 goToLogin(): void {
-    this.nav.push(LoginPage)
+    this._auth.resetPassword()
 }
 goToDebate(): void {
     this.nav.push(DebatePage)
