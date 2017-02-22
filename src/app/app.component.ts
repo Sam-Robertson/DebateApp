@@ -26,7 +26,8 @@ export class MyApp {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
 
-      if(!this._auth.loggedInBool) {
+      console.log(this._auth.loggedInBool);
+      if(this._auth.loggedInBool) {
           //route to login
         this.nav.setRoot(LoginPage);
       }
