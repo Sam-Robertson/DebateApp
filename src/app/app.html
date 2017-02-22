@@ -7,10 +7,11 @@
 
   <ion-content>
     <ion-list>
-      <button menuClose ion-item>Home</button>
-      <button menuClose ion-item (click)="goToLogin">Login</button>
+      <button menuClose ion-item (click)="goToHome()">Home</button>
+      <button menuClose ion-item (click)="goToLogin()">Login</button>
       <button menuClose ion-item (click)="goToSettings()">Settings</button>
       <button menuClose (click)="goToTerms()" ion-item>Terms</button>
+      <button menuClose (click)="logout()" ion-item>Logout</button>
     </ion-list>
   </ion-content>
 
