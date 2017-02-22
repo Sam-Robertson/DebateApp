@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, Nav} from 'ionic-angular';
+import { NavController, NavParams, Nav, LoadingController } from 'ionic-angular';
 import { TermsPage } from '../pages';
 import { AuthService } from '../../providers/auth-service';
 /*
@@ -14,16 +14,26 @@ import { AuthService } from '../../providers/auth-service';
 })
 export class LoginPage {
 
-  constructor(public navCtrl: NavController, public nav: Nav, public navParams: NavParams, private _auth: AuthService) {}
+  constructor(public navCtrl: NavController, public nav: Nav, public navParams: NavParams, private _auth: AuthService, public loadingCtrl: LoadingController) {}
 
 
   signInWithGoogle(): void {
+    this.presentLoading();
     this._auth.signInWithGoogle()
       .then(() => {
         console.log("Google display name ",this._auth.displayName());
         this.nav.setRoot(TermsPage);
 
     });
+  }
+
+  presentLoading(): void {
+    let loader = this.loadingCtrl.create({
+      content: "Please wait...",
+      duration: 50000,
+      dismissOnPageChange: true
+    });
+    loader.present();
   }
 
 

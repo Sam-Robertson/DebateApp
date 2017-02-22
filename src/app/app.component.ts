@@ -42,9 +42,7 @@ export class MyApp {
 goToSettings(): void {
     this.nav.push(SettingsPage)
 }
-goToLogin(): void {
-    this.nav.push(LoginPage)
-}
+
 goToDebate(): void {
     this.nav.push(DebatePage)
 }
