@@ -18,6 +18,8 @@ export class DebatePage {
     this.topic = this.navParams.data;
   }
 
+
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad DebatePage');
   }
