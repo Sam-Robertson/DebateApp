@@ -12,9 +12,11 @@
 
 
     <ion-list-header>Profile Image</ion-list-header>
-    <!--<a class="profile-image" (click)="addProfileImage()" >-->
-      <!--<h1 class="profile-initials" text-uppercase padding > SR </h1>-->
+    <!--<a class="profile-image" (click)="presentProfileModal()" >-->
+      <h1 class="profile-initials" text-uppercase padding > SR </h1>
     <!--</a>-->
+
+    <button (click)="presentProfileModal()" >Change Profile Image</button>
 
     <ion-list-header>Other Options</ion-list-header>
     <button ion-button (click)="showColorAlert()">Make Color Blind Friendly</button>
