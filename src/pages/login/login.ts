@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, Nav, LoadingController } from 'ionic-angular';
+import { NavParams, Nav, LoadingController } from 'ionic-angular';
 import { TermsPage } from '../pages';
 import { AuthService } from '../../providers/auth-service';
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 /*
   Generated class for the Login page.
 
@@ -14,7 +15,18 @@ import { AuthService } from '../../providers/auth-service';
 })
 export class LoginPage {
 
-  constructor(public navCtrl: NavController, public nav: Nav, public navParams: NavParams, private _auth: AuthService, public loadingCtrl: LoadingController) {}
+  private myForm : FormGroup;
+
+  constructor(private formBuilder: FormBuilder, public nav: Nav, public navParams: NavParams, private _auth: AuthService, public loadingCtrl: LoadingController) {
+
+    let emailRegEx = '/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/';
+
+    this.myForm = formBuilder.group({
+        email: ['', Validators.compose([Validators.pattern(emailRegEx), Validators.required])],
+      password: ['', Validators.compose([Validators.minLength(8), Validators.required])]
+    });
+
+  }
 
 
   signInWithGoogle(): void {
@@ -35,6 +47,8 @@ export class LoginPage {
     });
     loader.present();
   }
+
+
 
 
 }
