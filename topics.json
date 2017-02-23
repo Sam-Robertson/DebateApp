@@ -1,0 +1,148 @@
+{
+  "topics": {
+     "0": {
+       "name": "Gun Control",
+       "type": "Politics",
+       "totalClicks": 0,
+       "proClicks": 0,
+       "conClicks": 0,
+       "proPercent": "0%",
+       "conPercent": "0%"
+     },
+     "1": {
+       "name": "Drinking Age - Lower it?",
+       "type": "Politics",
+       "totalClicks": 0,
+       "proClicks": 0,
+       "conClicks": 0,
+       "proPercent": "0%",
+       "conPercent": "0%"
+     },
+     "2": {
+       "name": "Abortion",
+       "type": "Politics",
+       "totalClicks": 0,
+       "proClicks": 0,
+       "conClicks": 0,
+       "proPercent": "0%",
+       "conPercent": "0%"
+     },
+     "3": {
+       "name": "Under God in the Pledge",
+       "type": "Politics",
+       "totalClicks": 0,
+       "proClicks": 0,
+       "conClicks": 0,
+       "proPercent": "0%",
+       "conPercent": "0%"
+     },
+     "4": {
+       "name": "Illegal Immigration",
+       "type": "Politics",
+       "totalClicks": 0,
+       "proClicks": 0,
+       "conClicks": 0,
+       "proPercent": "0%",
+       "conPercent": "0%"
+     },
+     "5": {
+       "name": "Death Penalty",
+       "type": "Politics",
+       "totalClicks": 0,
+       "proClicks": 0,
+       "conClicks": 0,
+       "proPercent": "0%",
+       "conPercent": "0%"
+     },
+     "6": {
+       "name": "School Uniforms",
+       "type": "Politics",
+       "totalClicks": 0,
+       "proClicks": 0,
+       "conClicks": 0,
+       "proPercent": "0%",
+       "conPercent": "0%"
+     },
+     "7": {
+       "name": "Recreational Marijuana",
+       "type": "Politics",
+       "totalClicks": 0,
+       "proClicks": 0,
+       "conClicks": 0,
+       "proPercent": "0%",
+       "conPercent": "0%"
+     },
+     "8": {
+       "name": "Batman vs. Superman",
+       "type": "Entertainment",
+       "totalClicks": 0,
+       "proClicks": 0,
+       "conClicks": 0,
+       "proPercent": "0%",
+       "conPercent": "0%"
+     },
+     "9": {
+       "name": "Video Games and Violence",
+       "type": "Entertainment",
+       "totalClicks": 0,
+       "proClicks": 0,
+       "conClicks": 0,
+       "proPercent": "0%",
+       "conPercent": "0%"
+     },
+     "10": {
+       "name": "Social Networking - Good or Bad?",
+       "type": "Entertainment",
+       "totalClicks": 0,
+       "proClicks": 0,
+       "conClicks": 0,
+       "proPercent": "0%",
+       "conPercent": "0%"
+     },
+     "11": {
+       "name": "Animal Testing",
+       "type": "Science and Technology",
+       "totalClicks": 0,
+       "proClicks": 0,
+       "conClicks": 0,
+       "proPercent": "0%",
+       "conPercent": "0%"
+     },
+     "12": {
+       "name": "Cell Phones - Are They Safe?",
+       "type": "Science and Technology",
+       "totalClicks": 0,
+       "proClicks": 0,
+       "conClicks": 0,
+       "proPercent": "0%",
+       "conPercent": "0%"
+     },
+     "13": {
+       "name": "Alternate Energy vs Fossil Fuels",
+       "type": "Science and Technology",
+       "totalClicks": 0,
+       "proClicks": 0,
+       "conClicks": 0,
+       "proPercent": "0%",
+       "conPercent": "0%"
+     },
+     "14": {
+       "name": "Gay Marriage",
+       "type": "Sex and Gender",
+       "totalClicks": 0,
+       "proClicks": 0,
+       "conClicks": 0,
+       "proPercent": "0%",
+       "conPercent": "0%"
+     },
+     "15": {
+       "name": "Prostitution - Legalize it?",
+       "type": "Sex and Gender",
+       "totalClicks": 0,
+       "proClicks": 0,
+       "conClicks": 0,
+       "proPercent": "0%",
+       "conPercent": "0%"
+     }
+  }
+}
