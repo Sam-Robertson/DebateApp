@@ -19,7 +19,7 @@
     <div *ngIf="topics">
       <div *ngFor="let key of arrayOfKeys; let i = index;">
         <div *ngIf="topics[key].type == 'Politics'">
-          <button ion-item class="topic" id="political-topic{{i}}" (click)="openTopic($event, topics[key])">{{topics[key].name}}</button>
+          <button ion-item class="topic" id="political-topic{{i}}" (click)="openTopic($event, key)">{{topics[key].name}}</button>
         </div>
       </div>
     </div>

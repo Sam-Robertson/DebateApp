@@ -3,7 +3,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { SettingsPage } from "../settings/settings";
 import { LoadingController } from "ionic-angular/index";
 import { DebatePage } from "../debate/debate";
-import { AngularFire} from "angularfire2";
+import { AngularFire } from "angularfire2";
 
 /*
   Generated class for the Home page.
