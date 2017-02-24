@@ -27,6 +27,21 @@ export class AuthService {
     })
   }
 
+  signUp(email: string, password: string) {
+    let creds: any = { email: email, password: password };
+    return this.auth$.createUser(creds);
+  }
+
+  login(email: string, password: string): Promise<boolean> {
+    let creds: any = { email: email, password: password };
+    let res: Promise<boolean> = new Promise((resolve, reject) => {
+      this.auth$.login(creds).then(result => {
+        resolve(result);
+      })
+    });
+    return res;
+  }
+
   signOut(): void {
     this.auth$.logout();
   }

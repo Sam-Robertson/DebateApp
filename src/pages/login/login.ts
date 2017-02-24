@@ -39,6 +39,15 @@ export class LoginPage {
     });
   }
 
+  signInWithEmail(): void{
+    this.presentLoading();
+    this._auth.signUp('ward.andrew235@gmail.com', 'helloWorld')
+      .then(() => {
+      console.log('signed in');
+      this.nav.setRoot(TermsPage);
+      })
+  }
+
   presentLoading(): void {
     let loader = this.loadingCtrl.create({
       content: "Please wait...",
