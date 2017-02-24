@@ -6,6 +6,7 @@ import { AuthService } from '../providers/auth-service';
 
 
 import {HomePage, DebatePage, LoginPage, SettingsPage, TermsPage} from '../pages/pages';
+import {FirebaseService} from "../providers/firebase-service";
 
 
 export const firebaseConfig = {
@@ -43,6 +44,6 @@ const myFirebaseAuthConfig = {
     SettingsPage,
     TermsPage,
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, AuthService]
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, AuthService, FirebaseService]
 })
 export class AppModule {}

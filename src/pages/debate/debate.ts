@@ -9,10 +9,12 @@ import { AngularFire } from "angularfire2";
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
+
 @Component({
   selector: 'page-debate',
   templateUrl: 'debate.html'
 })
+
 export class DebatePage {
   topics: any[];
   key: any;
@@ -24,15 +26,13 @@ export class DebatePage {
     });
   }
 
-
-
   ionViewDidLoad() {
     console.log('ionViewDidLoad DebatePage');
   }
 
   proClick(): void {
     this.topics[this.key].proClicks += 1;
-    this.topics[this.key].update({proClicks: this.topics[this.key].proClicks});
+    // this.topics[this.key].update({proClicks: this.topics[this.key].proClicks});
     this.calcPerc();
   }
 
