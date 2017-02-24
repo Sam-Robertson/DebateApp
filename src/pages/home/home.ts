@@ -3,7 +3,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { SettingsPage } from "../settings/settings";
 import { LoadingController } from "ionic-angular/index";
 import { DebatePage } from "../debate/debate";
-import { AngularFire } from "angularfire2";
+import {AngularFire, FirebaseObjectObservable} from "angularfire2";
 
 /*
   Generated class for the Home page.
@@ -17,6 +17,7 @@ import { AngularFire } from "angularfire2";
 })
 export class HomePage {
   public arrayOfKeys;
+  // topics: any[];
   topics: any[];
   constructor(public navCtrl: NavController, public navParams: NavParams, public loadingController: LoadingController, public af: AngularFire) {
     af.database.list("/topics").subscribe(data => {
