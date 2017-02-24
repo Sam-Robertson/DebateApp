@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, Nav } from 'ionic-angular';
+import {NavController, NavParams, Nav} from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import {ModalController} from 'ionic-angular';
 import {LoginPage, ImagePage} from '../pages';
@@ -10,10 +10,12 @@ import {AuthService} from '../../providers/auth-service';
 @Component({
   selector: 'page-settings',
   templateUrl: 'settings.html'
+  // providers: [ImagePage]
 })
 export class SettingsPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public modalCtrl: ModalController, public nav: Nav, private _auth: AuthService) { }
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public modalCtrl: ModalController, public nav: Nav,
+              private _auth: AuthService) { }
    username = this._auth.displayName();
    // initials =  I need to filter the username in order to get the initials
 
@@ -60,8 +62,11 @@ export class SettingsPage {
   presentProfileModal() {
     let profileModal = this.modalCtrl.create(ImagePage);
     profileModal.present();
-
   }
+//   Imagestuff () {
+//     let lastImage = newfilename;
+//     console.log(newfilename);
+//   }
 }
 
 
