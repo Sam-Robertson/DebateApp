@@ -15,16 +15,17 @@
 
     <ion-slide>
   <h1>Login</h1>
-  <form [formGroup]="myForm">
+  <form #loginForm="ngForm">
     <ion-item>
       <ion-label floating>Email</ion-label>
-      <ion-input formControlName="email" type="email" [class.invalid]="!myForm.controls.email.valid"></ion-input>
+      <ion-input [(ngModel)]="form.email" type="email" name="email"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label floating>Password</ion-label>
-      <ion-input formControlName="password" type="password" [class.invalid]="!myForm.controls.password.valid"></ion-input>
+      <ion-input [(ngModel)]="form.password" name="password"  type="password"></ion-input>
     </ion-item>
-    <button (onclick)="openModal()" ion-button type="submit" block>Login</button>
+    <button [disabled]="!loginForm.valid" (click)="loginEmail()" ion-button type="submit" block>Login</button>
+
   </form>
 
   <br margin>
@@ -37,6 +38,9 @@
     <span color="googleGreen">l</span>
     <span color="googleRed">e</span>
   </button>
+      <div padding class="error" *ngIf="error">
+        <p>{{error}}</p>
+      </div>
 <br margin>
 <br margin>
 <br margin>
@@ -49,18 +53,38 @@
 
     <ion-slide>
       <h1>Register</h1>
-      <form [formGroup]="myForm">
+      <form #registerForm="ngForm">
         <ion-item>
           <ion-label floating>Email</ion-label>
-          <ion-input formControlName="email" type="email" [class.invalid]="!myForm.controls.email.valid"></ion-input>
+          <ion-input [(ngModel)]="form.email" name="email" type="email"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label floating>Password</ion-label>
-          <ion-input formControlName="password" type="password" [class.invalid]="!myForm.controls.password.valid"></ion-input>
+          <ion-input [(ngModel)]="form.password" name="password" type="password"></ion-input>
         </ion-item>
-        <button (onclick)="signInWithEmail()" ion-button type="submit" block>Sign Up</button>
+        <button (click)="register()" [disabled]="!registerForm.valid" ion-button type="submit" block>Sign Up</button>
       </form>
+      <br margin>
+      <button ion-button outline center (click)="signInWithGoogle()">
+        Sign in with &nbsp;
+        <span color="googleBlue">G</span>
+        <span color="googleRed">o</span>
+        <span color="googleYellow">o</span>
+        <span color="googleBlue">g</span>
+        <span color="googleGreen">l</span>
+        <span color="googleRed">e</span>
+      </button>
+      <div padding class="error" *ngIf="error">
+        <p>{{error}}</p>
+      </div>
+      <br margin>
+      <br margin>
+      <br margin>
+      <br margin>
+      <br margin>
+      <br margin>
 
+      <a>browse as guest</a>
     </ion-slide>
 
 

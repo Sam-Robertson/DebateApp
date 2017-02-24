@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavParams, Nav, LoadingController } from 'ionic-angular';
 import { TermsPage } from '../pages';
 import { AuthService } from '../../providers/auth-service';
-import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+// import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 /*
   Generated class for the Login page.
 
@@ -15,47 +15,76 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 })
 export class LoginPage {
 
-  private myForm : FormGroup;
+  form: any;
+  error: any;
 
-  constructor(private formBuilder: FormBuilder, public nav: Nav, public navParams: NavParams, private _auth: AuthService, public loadingCtrl: LoadingController) {
-
-    let emailRegEx = '/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/';
-
-    this.myForm = formBuilder.group({
-        email: ['', Validators.compose([Validators.pattern(emailRegEx), Validators.required])],
-      password: ['', Validators.compose([Validators.minLength(8), Validators.required])]
-    });
-
+  constructor(public nav: Nav, public navParams: NavParams, private _auth: AuthService, public loadingCtrl: LoadingController) {
+    this.form = {
+      email: '',
+      password: ''
+    }
   }
 
 
   signInWithGoogle(): void {
-    this.presentLoading();
+    let loader = this.loadingCtrl.create({
+      content: "Please wait..."
+    });
+
+    loader.present();
     this._auth.signInWithGoogle()
       .then(() => {
+      loader.dismiss();
         console.log("Google display name ",this._auth.displayName());
         this.nav.setRoot(TermsPage);
 
     });
   }
 
-  signInWithEmail(): void{
-    this.presentLoading();
-    this._auth.signUp('ward.andrew235@gmail.com', 'helloWorld')
-      .then(() => {
-      console.log('signed in');
-      this.nav.setRoot(TermsPage);
-      })
+  register(): void{
+    let loader = this.loadingCtrl.create({
+      content: "Please wait..."
+    });
+  loader.present();
+    this._auth.registerUser(this.form).subscribe(registerData => {
+      this._auth.loginWithEmail(registerData).subscribe(loginData => {
+        setTimeout(() => {
+          loader.dismiss();
+          this.nav.setRoot(TermsPage);
+        }, 1000);
+      }, loginError => {
+        setTimeout(() => {
+          loader.dismiss();
+          this.error = loginError;
+        }, 1000);
+      });
+    }, registerError => {
+      setTimeout(() => {
+        loader.dismiss();
+        this.error = registerError;
+      }, 1000);
+    });
   }
 
-  presentLoading(): void {
-    let loader = this.loadingCtrl.create({
-      content: "Please wait...",
-      duration: 50000,
-      dismissOnPageChange: true
-    });
-    loader.present();
-  }
+
+loginEmail(): void {
+  let loading = this.loadingCtrl.create({
+    content: 'Please wait...'
+  });
+  loading.present();
+
+  this._auth.loginWithEmail(this.form).subscribe(data => {
+    setTimeout(() => {
+      loading.dismiss();
+      // The auth subscribe method inside the app.ts will handle the page switch to home
+    }, 1000);
+  }, err => {
+    setTimeout(() => {
+      loading.dismiss();
+      this.error = err;
+    }, 1000);
+  });
+}
 
 
 

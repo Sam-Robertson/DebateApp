@@ -3,7 +3,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { SettingsPage } from "../settings/settings";
 import { LoadingController } from "ionic-angular/index";
 import { DebatePage } from "../debate/debate";
-import { AngularFire, FirebaseListObservable } from "angularfire2";
+import { AngularFire } from "angularfire2";
 
 /*
   Generated class for the Home page.
@@ -16,10 +16,13 @@ import { AngularFire, FirebaseListObservable } from "angularfire2";
   templateUrl: 'home.html'
 })
 export class HomePage {
-
-  topics: FirebaseListObservable<any[]>;
+  public arrayOfKeys;
+  topics: any[];
   constructor(public navCtrl: NavController, public navParams: NavParams, public loadingController: LoadingController, public af: AngularFire) {
-    this.topics = af.database.list("/topics");
+    af.database.list("/topics").subscribe(data => {
+      this.topics = data;
+      this.arrayOfKeys = Object.keys(this.topics);
+    });
   }
 
 

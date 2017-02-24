@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { AngularFire } from "angularfire2";
+
 
 /*
   Generated class for the Debate page.
@@ -12,30 +14,36 @@ import { NavController, NavParams } from 'ionic-angular';
   templateUrl: 'debate.html'
 })
 export class DebatePage {
-  topic: any;
+  topics: any[];
+  key: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.topic = this.navParams.data;
+  constructor(public navCtrl: NavController, public navParams: NavParams, public af: AngularFire) {
+    this.key = this.navParams.data;
+    af.database.list("/topics").subscribe(data => {
+      this.topics = data;
+    });
   }
+
+
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DebatePage');
   }
 
   proClick(): void {
-    this.topic.proClicks += 1;
+    this.topics[this.key].proClicks += 1;
     this.calcPerc();
   }
 
   conClick(): void {
-    this.topic.conClicks += 1;
+    this.topics[this.key].conClicks += 1;
     this.calcPerc();
   }
 
   calcPerc(): void {
-    this.topic.totalClicks = this.topic.proClicks + this.topic.conClicks;
-    this.topic.proPercent = Math.round((this.topic.proClicks / this.topic.totalClicks) * 100) + "%";
-    this.topic.conPercent = Math.round((this.topic.conClicks / this.topic.totalClicks) * 100) + "%";
+    this.topics[this.key].totalClicks = this.topics[this.key].proClicks + this.topics[this.key].conClicks;
+    this.topics[this.key].proPercent = Math.round((this.topics[this.key].proClicks / this.topics[this.key].totalClicks) * 100) + "%";
+    this.topics[this.key].conPercent = Math.round((this.topics[this.key].conClicks / this.topics[this.key].totalClicks) * 100) + "%";
   }
 
 }
