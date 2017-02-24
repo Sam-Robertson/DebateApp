@@ -8,20 +8,26 @@
 
 
 <ion-content padding>
+
+
+
+  <ion-slides pager>
+
+    <ion-slide>
   <h1>Login</h1>
-  <form>
+  <form [formGroup]="myForm">
     <ion-item>
-      <ion-label>Email</ion-label>
-      <ion-input [(ngModel)]="email" type="email" name="email"></ion-input>
+      <ion-label floating>Email</ion-label>
+      <ion-input formControlName="email" type="email" [class.invalid]="!myForm.controls.email.valid"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label>Password</ion-label>
-      <ion-input [(ngModel)]="password" name="password" type="password"></ion-input>
+      <ion-label floating>Password</ion-label>
+      <ion-input formControlName="password" type="password" [class.invalid]="!myForm.controls.password.valid"></ion-input>
     </ion-item>
     <button (onclick)="openModal()" ion-button type="submit" block>Login</button>
   </form>
 
-  <hr margin>
+  <br margin>
   <button ion-button outline center (click)="signInWithGoogle()">
     Sign in with &nbsp;
     <span color="googleBlue">G</span>
@@ -31,4 +37,22 @@
     <span color="googleGreen">l</span>
     <span color="googleRed">e</span>
   </button>
+<br margin>
+<br margin>
+<br margin>
+<br margin>
+<br margin>
+<br margin>
+
+  <a>browse as guest</a>
+    </ion-slide>
+
+    <ion-slide>
+      <h1>Register</h1>
+
+
+    </ion-slide>
+
+
+  </ion-slides>
 </ion-content>

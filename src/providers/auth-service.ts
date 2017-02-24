@@ -23,7 +23,7 @@ export class AuthService {
   signInWithGoogle(): firebase.Promise<FirebaseAuthState> {
     return this.auth$.login({
       provider: AuthProviders.Google,
-      method: AuthMethods.Popup
+      method: AuthMethods.Redirect
     })
   }
 
