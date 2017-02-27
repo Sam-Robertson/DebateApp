@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {NavController, ActionSheetController, ToastController, Platform, LoadingController, Loading, ViewController} from 'ionic-angular';
 import { Camera, File, Transfer, FilePath } from 'ionic-native';
-
+import { Storage } from '../../providers/storage';
 
 declare var cordova: any;
 
@@ -15,7 +15,7 @@ export class ImagePage {
   lastImage: string = null;
   loading: Loading;
 
-  constructor(public navCtrl: NavController, public actionSheetCtrl: ActionSheetController, public toastCtrl: ToastController, public platform: Platform, public loadingCtrl: LoadingController, public viewCtrl: ViewController) {
+  constructor(private _storage: Storage, public navCtrl: NavController, public actionSheetCtrl: ActionSheetController, public toastCtrl: ToastController, public platform: Platform, public loadingCtrl: LoadingController, public viewCtrl: ViewController) {
   }
 
   public presentActionSheet() {
@@ -109,39 +109,8 @@ export class ImagePage {
   }
 
   public uploadImage() {
-    // Destination URL
-    var url = "http://yoururl/upload.php";
 
-    // File for Upload
-    var targetPath = this.pathForImage(this.lastImage);
-
-    // File name only
-    var filename = this.lastImage;
-
-    var options = {
-      fileKey: "file",
-      fileName: filename,
-      chunkedMode: false,
-      mimeType: "multipart/form-data",
-      params: {'fileName': filename}
-    };
-
-    const fileTransfer = new Transfer();
-
-    this.loading = this.loadingCtrl.create({
-      content: 'Uploading...',
-    });
-    this.loading.present();
-
-    // Use the FileTransfer to upload the image
-    fileTransfer.upload(targetPath, url, options).then(data => {
-      this.loading.dismissAll()
-      this.presentToast('Image successfully uploaded.');
-    }, err => {
-      this.loading.dismissAll()
-      this.presentToast('Error while uploading file.');
-    });
-    // this.pushImage();
+    this._storage.uploadImage(this.lastImage);
   }
   dismiss() {
     this.viewCtrl.dismiss();
