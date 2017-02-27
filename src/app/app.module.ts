@@ -29,7 +29,8 @@ const myFirebaseAuthConfig = {
     DebatePage,
     LoginPage,
     SettingsPage,
-    TermsPage
+    TermsPage,
+    ImagePage
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -43,6 +44,7 @@ const myFirebaseAuthConfig = {
     LoginPage,
     SettingsPage,
     TermsPage,
+    ImagePage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, AuthService, FirebaseService]
 })
