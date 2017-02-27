@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import {NavController, NavParams, LoadingController} from 'ionic-angular';
 import { AngularFire, FirebaseListObservable } from "angularfire2";
 import { AuthService } from "../../providers/auth-service";
 
@@ -21,7 +21,7 @@ export class DebatePage {
   key: any;
   firebaseTopics: FirebaseListObservable<any[]>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public af: AngularFire, private _auth: AuthService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public af: AngularFire, private _auth: AuthService, public loadingCtrl: LoadingController) {
     this.key = this.navParams.data;
     this.firebaseTopics = af.database.list("/topics");
     this.firebaseTopics.subscribe(data => {
@@ -30,6 +30,7 @@ export class DebatePage {
   }
 
   ionViewDidLoad() {
+
     console.log('ionViewDidLoad DebatePage');
   }
 
