@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import {AuthProviders, AngularFireAuth, FirebaseAuthState, AuthMethods, AngularFire} from 'angularfire2';
 import { Observable } from 'rxjs/Observable';
 
@@ -12,19 +12,18 @@ export class AuthService {
       this.authState = state;
     });
 
+
   }
 
-  get authenticated(): boolean {
-    return this.authState !== null;
+  authenticated(): Observable<any> {
+    return this.auth$;
   }
-  get loggedInBool(): boolean {
-    return this.ang.auth.subscribe() !== null;
-  }
+
 
   signInWithGoogle(): firebase.Promise<FirebaseAuthState> {
     return this.auth$.login({
       provider: AuthProviders.Google,
-      method: AuthMethods.Redirect
+      method: AuthMethods.Popup
     })
   }
 
@@ -36,7 +35,8 @@ export class AuthService {
           email: authData.auth.email,
           emailVerified: false,
           provider: 'email',
-          image: 'https://freeiconshop.com/files/edd/person-solid.png'
+          image: 'https://freeiconshop.com/files/edd/person-solid.png',
+          topics: []
         });
         credentials.created = true;
         observer.next(credentials);
@@ -44,13 +44,13 @@ export class AuthService {
         if (error) {
           switch (error.code) {
             case 'INVALID_EMAIL':
-              observer.error('E-mail inválido.');
+              observer.error('E-mail invalid.');
               break;
             case 'EMAIL_TAKEN':
-              observer.error('Este e-mail já está sendo utilizado.');
+              observer.error('Email is already in use');
               break;
             case 'NETWORK_ERROR':
-              observer.error('Aconteceu algum erro ao tentar se conectar ao servidor, tente novamente mais tarde.');
+              observer.error('Could not connect. Please try again later.');
               break;
             default:
               observer.error(error);
