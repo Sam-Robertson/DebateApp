@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavParams, Nav, LoadingController } from 'ionic-angular';
 import { TermsPage } from '../pages';
 import { AuthService } from '../../providers/auth-service';
-// import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+import {FormBuilder, Validators, AbstractControl} from '@angular/forms';
 /*
   Generated class for the Login page.
 
