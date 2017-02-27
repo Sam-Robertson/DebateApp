@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {NavController, ActionSheetController, ToastController, Platform, LoadingController, Loading, ViewController} from 'ionic-angular';
 import { Camera, File, Transfer, FilePath } from 'ionic-native';
 
+
 declare var cordova: any;
 
 
@@ -135,7 +136,7 @@ export class ImagePage {
     // Use the FileTransfer to upload the image
     fileTransfer.upload(targetPath, url, options).then(data => {
       this.loading.dismissAll()
-      this.presentToast('Image succesful uploaded.');
+      this.presentToast('Image successfully uploaded.');
     }, err => {
       this.loading.dismissAll()
       this.presentToast('Error while uploading file.');
@@ -146,6 +147,10 @@ export class ImagePage {
     this.viewCtrl.dismiss();
   }
 }
+
+
+
+
 
 // @Injectable()
 // export class myImage {

@@ -56,7 +56,7 @@ export class SettingsPage {
 
     setTimeout(function () {
       window.open("________You_Are_Now_Dead______Because_we_hate_you_____")
-    }, 2000);
+    }, 1500);
   };
 
   presentProfileModal() {
