@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { AngularFire, FirebaseListObservable } from "angularfire2";
+import { AuthService } from "../../providers/auth-service";
 
 
 /*
@@ -20,7 +21,7 @@ export class DebatePage {
   key: any;
   firebaseTopics: FirebaseListObservable<any[]>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public af: AngularFire) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public af: AngularFire, private _auth: AuthService) {
     this.key = this.navParams.data;
     this.firebaseTopics = af.database.list("/topics");
     this.firebaseTopics.subscribe(data => {

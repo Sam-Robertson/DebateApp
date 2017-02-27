@@ -19,8 +19,8 @@ export class AuthService {
     return this.auth$;
   }
 
-  uId() {
-    this.auth$.getAuth().uid;
+  get uId() {
+    return this.auth$.getAuth().uid;
   }
 
   signInWithGoogle(): firebase.Promise<FirebaseAuthState> {
