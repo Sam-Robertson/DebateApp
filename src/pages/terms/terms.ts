@@ -17,7 +17,7 @@ export class TermsPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public nav: Nav) {}
 
  agree(): void {
-    this.nav.setRoot(HomePage);
+   this.nav.setRoot(HomePage);
  }
 
 }

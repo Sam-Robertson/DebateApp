@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
-import {AngularFire, FirebaseObjectObservable} from "angularfire2";
+import {AngularFire, FirebaseListObservable} from "angularfire2";
 
 /*
   Generated class for the FirebaseService provider.
@@ -11,9 +11,14 @@ import {AngularFire, FirebaseObjectObservable} from "angularfire2";
 */
 @Injectable()
 export class FirebaseService {
-
-  constructor(public http: Http) {
+  topics: any[];
+  firebaseTopics: FirebaseListObservable<any[]>;
+  constructor(public http: Http, public af: AngularFire) {
     console.log('Hello FirebaseService Provider');
+    this.firebaseTopics = af.database.list("/topics");
+    this.firebaseTopics.subscribe(data => {
+      this.topics = data;
+    });
   }
 
 }

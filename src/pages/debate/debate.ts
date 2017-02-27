@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { AngularFire } from "angularfire2";
+import { AngularFire, FirebaseListObservable } from "angularfire2";
 
 
 /*
@@ -18,10 +18,12 @@ import { AngularFire } from "angularfire2";
 export class DebatePage {
   topics: any[];
   key: any;
+  firebaseTopics: FirebaseListObservable<any[]>;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public af: AngularFire) {
     this.key = this.navParams.data;
-    af.database.list("/topics").subscribe(data => {
+    this.firebaseTopics = af.database.list("/topics");
+    this.firebaseTopics.subscribe(data => {
       this.topics = data;
     });
   }
@@ -32,19 +34,23 @@ export class DebatePage {
 
   proClick(): void {
     this.topics[this.key].proClicks += 1;
-    // this.topics[this.key].update({proClicks: this.topics[this.key].proClicks});
+    this.firebaseTopics.update(this.key , {proClicks: this.topics[this.key].proClicks});
     this.calcPerc();
   }
 
   conClick(): void {
     this.topics[this.key].conClicks += 1;
+    this.firebaseTopics.update(this.key , {conClicks: this.topics[this.key].conClicks});
     this.calcPerc();
   }
 
   calcPerc(): void {
     this.topics[this.key].totalClicks = this.topics[this.key].proClicks + this.topics[this.key].conClicks;
+    this.firebaseTopics.update(this.key , {totalClicks: this.topics[this.key].totalClicks});
     this.topics[this.key].proPercent = Math.round((this.topics[this.key].proClicks / this.topics[this.key].totalClicks) * 100) + "%";
+    this.firebaseTopics.update(this.key , {proPercent: this.topics[this.key].proPercent});
     this.topics[this.key].conPercent = Math.round((this.topics[this.key].conClicks / this.topics[this.key].totalClicks) * 100) + "%";
+    this.firebaseTopics.update(this.key , {conPercent: this.topics[this.key].conPercent});
   }
 
 }
