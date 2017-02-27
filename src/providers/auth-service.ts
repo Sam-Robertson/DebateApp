@@ -80,7 +80,7 @@ export class AuthService {
 
   displayName(): string {
     if (this.authState != null) {
-      return this.authState.google.displayName;
+      return this.auth$.getAuth().auth.displayName;
     } else {
       return '';
     }
