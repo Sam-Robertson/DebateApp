@@ -12,7 +12,8 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   rootPage: any = HomePage;      //PUT ROOT PAGE IMPORTED HERE NOT IN QUOTES
-
+  sub: any;
+  fromLogin: boolean;
 
   constructor(public platform: Platform, private _auth: AuthService) {
     this.initializeApp();
@@ -22,15 +23,27 @@ export class MyApp {
   }
 
   initializeApp() {
+    this.fromLogin = false;
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
 
-      console.log(this._auth.loggedInBool);
-      if(this._auth.loggedInBool) {
-          //route to login
-        this.nav.setRoot(LoginPage);
-      }
+      this.sub = this._auth.authenticated().subscribe(authResp =>
+      {
+        console.log(authResp);
+        if(authResp == null) {
+          this.fromLogin = true;
+          this.nav.setRoot(LoginPage);
+        }else {
+          if(this.fromLogin) {
+            this.nav.setRoot(TermsPage);
+          } else {
+            this.nav.setRoot(HomePage);
+          }
+        }
+
+      });
+
       StatusBar.styleDefault();
       Splashscreen.hide();
     });
