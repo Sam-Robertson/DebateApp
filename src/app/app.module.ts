@@ -3,6 +3,7 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { AngularFireModule, AuthProviders, AuthMethods } from 'angularfire2';
 import { AuthService } from '../providers/auth-service';
+import { Storage } from '../providers/storage';
 
 
 import {HomePage, DebatePage, LoginPage, SettingsPage, TermsPage} from '../pages/pages';
@@ -44,6 +45,6 @@ const myFirebaseAuthConfig = {
     SettingsPage,
     TermsPage,
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, AuthService, FirebaseService]
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, AuthService, FirebaseService, Storage]
 })
 export class AppModule {}
