@@ -1,5 +1,4 @@
 import { Injectable, Inject } from '@angular/core';
-import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { FirebaseApp } from 'angularfire2';
 
@@ -15,8 +14,9 @@ export class Storage {
   constructor(@Inject(FirebaseApp) firebaseApp: any) {
     this.storageRef = firebaseApp.storage().ref();
   }
-  uploadImage(name) {
-    let profileRef = this.storageRef.child('images/profile.jpg');
-
+  uploadImage(file) {
+    this.storageRef.child('images/projile.jpg').put(file).then(function(snapshot){
+      console.log('Uploaded ' + snapshot);
+    });
   }
 }
