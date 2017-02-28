@@ -16,14 +16,14 @@ export class FirebaseService {
   firebaseTopics: FirebaseListObservable<any[]>;
   users: any[];
   firebaseUsers: FirebaseListObservable<any[]>;
-  constructor(public http: Http, public af: AngularFire, public _auth: AuthService) {
+  constructor(public http: Http, public af: AngularFire, private _auth: AuthService) { //private _auth: AuthService
     console.log('Hello FirebaseService Provider');
     this.firebaseTopics = af.database.list("/topics");
     this.firebaseTopics.subscribe(data => {
       this.topics = data;
 
     });
-    this.firebaseUsers = af.database.list("/users/" + _auth.uId + "/topics");
+    this.firebaseUsers = af.database.list("/users"); // + "/" + _auth.uId + "/topics");
     this.firebaseUsers.subscribe(data => {
       this.users = data;
     });

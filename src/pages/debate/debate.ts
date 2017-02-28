@@ -39,15 +39,15 @@ export class DebatePage {
   }
 
   proClick(): void {
-    if(this.users[this.key].chosen == "none"){
-      this.users[this.key].chosen = "pro";
-      this.firebaseUsers.update(this.key, {chosen: this.users[this.key].chosen});
-
-      this.topics[this.key].proClicks += 1;
-      this.firebaseTopics.update(this.key , {proClicks: this.topics[this.key].proClicks});
-      this.calcPerc();
-    }
-
+    // if(this.users[this.key].chosen == "none"){
+    //   this.users[this.key].chosen = "pro";
+    //   this.firebaseUsers.update(this.key, {chosen: this.users[this.key].chosen});
+    //
+    //
+    // }
+    this.topics[this.key].proClicks += 1;
+    this.firebaseTopics.update(this.key , {proClicks: this.topics[this.key].proClicks});
+    this.calcPerc();
   }
 
   conClick(): void {
