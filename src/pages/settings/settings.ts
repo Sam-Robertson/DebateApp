@@ -4,6 +4,7 @@ import { AlertController } from 'ionic-angular';
 import {ModalController} from 'ionic-angular';
 import {LoginPage, ImagePage} from '../pages';
 import {AuthService} from '../../providers/auth-service';
+// import {Pipe, PipeTransform } from '@angular/core'
 
 
 
@@ -63,13 +64,27 @@ export class SettingsPage {
     let profileModal = this.modalCtrl.create(ImagePage);
     profileModal.present();
   }
+
+
 //   Imagestuff () {
 //     let lastImage = newfilename;
 //     console.log(newfilename);
 //   }
 }
-
-
+// @Pipe ({
+//   name: 'Initials'
+// })
+// export class InitialsPipe implements PipeTransform {
+//   transform(value: string): string {
+//     let Myfirst = value.length[1];
+//     let MySecond =
+//     {
+//
+//     }
+//   }
+// }
+//
+//
 
 
 
