@@ -14,10 +14,12 @@ export class FirebaseService {
   topics: any[];
   firebaseTopics: FirebaseListObservable<any[]>;
   constructor(public http: Http, public af: AngularFire) {
+
     console.log('Hello FirebaseService Provider');
     this.firebaseTopics = af.database.list("/topics");
     this.firebaseTopics.subscribe(data => {
       this.topics = data;
+
     });
   }
 

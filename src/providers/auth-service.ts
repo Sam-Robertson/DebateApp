@@ -1,12 +1,14 @@
-import { Injectable, Inject } from '@angular/core';
+import { Injectable } from '@angular/core';
 import {AuthProviders, AngularFireAuth, FirebaseAuthState, AuthMethods, AngularFire} from 'angularfire2';
 import { Observable } from 'rxjs/Observable';
+import { FirebaseService } from './firebase-service';
 
 @Injectable()
-export class AuthService {
+export class AuthService{
   private authState: FirebaseAuthState;
 
-  constructor(public auth$: AngularFireAuth, public ang: AngularFire) {
+  constructor(public auth$: AngularFireAuth, public ang: AngularFire, private _database: FirebaseService) {
+
     this.authState = auth$.getAuth();
     auth$.subscribe((state: FirebaseAuthState) => {
       this.authState = state;
@@ -31,6 +33,18 @@ export class AuthService {
   }
 
   registerUser(credentials: any) {
+
+    let topics: any = {};
+
+    let i = 0;
+    this._database.topics.forEach((key: any) => {
+        topics[i] = {
+          name: key.name,
+          chosen: 'none'
+        };
+        i++;
+    });
+
     return Observable.create(observer => {
       this.ang.auth.createUser(credentials).then((authData: any) => {
         this.ang.database.list('users').update(authData.uid, {
@@ -38,13 +52,14 @@ export class AuthService {
           email: authData.auth.email,
           emailVerified: false,
           provider: 'email',
-          image: 'https://freeiconshop.com/files/edd/person-solid.png',
-          topics: []
+          image: '//////url///////',
+          topics: topics
         });
         credentials.created = true;
         observer.next(credentials);
       }).catch((error: any) => {
         if (error) {
+          console.log(error);
           switch (error.code) {
             case 'INVALID_EMAIL':
               observer.error('E-mail invalid.');
