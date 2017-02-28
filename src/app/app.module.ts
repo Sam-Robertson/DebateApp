@@ -2,12 +2,12 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { AngularFireModule, AuthProviders, AuthMethods } from 'angularfire2';
+import {FirebaseService} from "../providers/firebase-service";
 import { AuthService } from '../providers/auth-service';
 import { Storage } from '../providers/storage';
 
 
 import {HomePage, DebatePage, LoginPage, SettingsPage, TermsPage} from '../pages/pages';
-import {FirebaseService} from "../providers/firebase-service";
 
 
 export const firebaseConfig = {
@@ -45,6 +45,6 @@ const myFirebaseAuthConfig = {
     SettingsPage,
     TermsPage,
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, AuthService, FirebaseService, Storage]
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, FirebaseService, AuthService, Storage]
 })
 export class AppModule {}

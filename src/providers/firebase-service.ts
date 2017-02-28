@@ -21,6 +21,7 @@ export class FirebaseService {
     this.firebaseTopics = af.database.list("/topics");
     this.firebaseTopics.subscribe(data => {
       this.topics = data;
+
     });
     this.firebaseUsers = af.database.list("/users/" + _auth.uId + "/topics");
     this.firebaseUsers.subscribe(data => {

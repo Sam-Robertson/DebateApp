@@ -109,7 +109,6 @@ export class ImagePage {
   }
 
   public uploadImage() {
-
     this._storage.uploadImage(this.lastImage);
   }
   dismiss() {

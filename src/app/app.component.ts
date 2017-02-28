@@ -6,7 +6,8 @@ import {HomePage, TermsPage, SettingsPage, LoginPage, DebatePage} from '../pages
 
 
 @Component({
-  templateUrl: 'app.html'
+  templateUrl: 'app.html',
+  providers: [AuthService]
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
