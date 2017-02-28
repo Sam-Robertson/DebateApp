@@ -15,7 +15,7 @@ export class AuthService{
     });
 
 
-  }
+
 
   authenticated(): Observable<any> {
     return this.auth$;
