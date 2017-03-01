@@ -25,7 +25,7 @@ export class DebatePage {
   users: any[];
   firebaseUsers: FirebaseListObservable<any[]>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public af: AngularFire, private _auth: AuthService, public loadingCtrl: LoadingController, public fb: FirebaseService, public toastCtrl) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public af: AngularFire, private _auth: AuthService, public loadingCtrl: LoadingController, public fb: FirebaseService) {
     this.key = this.navParams.data;
     this.topics = this.fb.topics;
     this.firebaseTopics = this.fb.firebaseTopics;
