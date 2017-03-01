@@ -1,9 +1,13 @@
 import {Component} from '@angular/core';
 import {NavController, ActionSheetController, ToastController, Platform, LoadingController, Loading, ViewController} from 'ionic-angular';
-import { Camera, File, Transfer, FilePath } from 'ionic-native';
+import { Camera, File, FilePath } from 'ionic-native';
 import { Storage } from '../../providers/storage';
 
+//
+
+
 declare var cordova: any;
+declare var window: any;
 
 
 @Component({
@@ -43,6 +47,29 @@ export class ImagePage {
     actionSheet.present();
   }
 
+  // saveToDatabaseAssetList(_uploadSnapshot) {
+  //   var ref = firebase.database().ref('assets');
+  //
+  //   return new Promise((resolve, reject) => {
+  //
+  //     // we will save meta data of image in database
+  //     var dataToSave = {
+  //       'URL': _uploadSnapshot.downloadURL, // url to access file
+  //       'name': _uploadSnapshot.metadata.name, // name of the file
+  //       'owner': firebase.auth().currentUser.uid,
+  //       'email': firebase.auth().currentUser.email,
+  //       'lastUpdated': new Date().getTime(),
+  //     };
+  //
+  //     ref.push(dataToSave, (_response) => {
+  //       resolve(_response);
+  //     }).catch((_error) => {
+  //       reject(_error);
+  //     });
+  //   });
+  //
+  // }
+
   public takePicture(sourceType) {
     // Create options for the Camera Dialog
     var options = {
@@ -73,7 +100,7 @@ export class ImagePage {
   }
 
   // Create a new name for the image
-  private createFileName() {
+  public createFileName() {
     var d = new Date(),
       n = d.getTime(),
       newFileName = n + ".jpg";
@@ -99,7 +126,7 @@ export class ImagePage {
     toast.present();
   }
 
-// Always get the accurate path to your apps folder
+  // Always get the accurate path to your apps folder
   public pathForImage(img) {
     if (img === null) {
       return '';
@@ -108,9 +135,45 @@ export class ImagePage {
     }
   }
 
-  public uploadImage() {
-    this._storage.uploadImage(this.lastImage);
-  }
+  // uploadToFirebase(newFileName) {
+  //
+  //
+  //   return new Promise((resolve, reject) => {
+  //
+  //
+  //     var fileRef = firebase.storage().ref('images/' + newFileName);
+  //
+  //     var uploadTask = fileRef.put(newFileName);
+  //
+  //     uploadTask.on('state_changed', (_snapshot) => {
+  //       console.log('snapshot progess ' + _snapshot);
+  //     }, (_error) => {
+  //       reject(_error);
+  //     }, () => {
+  //       // completion...
+  //       resolve(uploadTask.snapshot);
+  //     });
+  //   });
+  // }
+
+  // public uploadImage() {
+  //   return this.uploadToFirebase(this.lastImage).then((_uploadSnapshot: any) => {
+  //   alert('file uploaded successfully  ' + _uploadSnapshot.downloadURL);
+
+  // // store reference to storage in database
+  // return this.saveToDatabaseAssetList(_uploadSnapshot);
+  //
+  // }).then((_uploadSnapshot: any) => {
+  //   alert('file saved to asset catalog successfully  ');
+  // },
+  //     (_error) => {
+  //     alert('Error ' + (_error.message || _error));
+  //     })
+  // }
+
+
+
+
   dismiss() {
     this.viewCtrl.dismiss();
   }
