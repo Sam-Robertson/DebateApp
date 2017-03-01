@@ -15,6 +15,7 @@
 
 <ion-content padding>
   <ion-title>Which side are you on?</ion-title>
+  <a (click)="reset()">Reset</a>
   <div id="pro-con-container">
     <button class="pro-con-buttons" ion-button color="secondary" (click)="proClick()">Pro</button>
     <button class="pro-con-buttons" ion-button color="danger" (click)="conClick()">Con</button>
@@ -27,4 +28,5 @@
       <p class="con-data">Con Percent: {{topics[key].conPercent}}</p>
     </div>
   </div>
+  <p id="description">{{topics[key].description}}</p>
 </ion-content>
