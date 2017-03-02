@@ -3,7 +3,7 @@ import {NavController, NavParams, LoadingController} from 'ionic-angular';
 import { AngularFire, FirebaseListObservable } from "angularfire2";
 import { AuthService } from "../../providers/auth-service";
 import {FirebaseService} from "../../providers/firebase-service";
-//import {ToastController} from "ionic-angular";
+import {Toast} from "ionic-native";
 
 
 /*
@@ -48,6 +48,12 @@ export class DebatePage {
       this.topics[this.key].proClicks += 1;
       this.firebaseTopics.update(this.key , {proClicks: this.topics[this.key].proClicks});
       this.calcPerc();
+    } else {
+      Toast.show("You already voted. You can't change your vote", "5000", "center").subscribe(
+        toast => {
+          console.log(toast)
+        }
+      );
     }
   }
 
@@ -83,4 +89,5 @@ export class DebatePage {
     this.firebaseTopics.update(this.key , {proClicks: this.topics[this.key].proClicks});
     this.firebaseTopics.update(this.key , {totalClicks: this.topics[this.key].totalClicks});
   }
+  // this is a comment, for update purposes
 }
