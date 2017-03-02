@@ -14,15 +14,35 @@
   <ion-slides pager>
     <ion-slide>
   <h1>Login</h1>
-  <form #loginForm="ngForm">
+  <form [formGroup]="loginForm">
+
+    <!--Form Email-->
     <ion-item>
       <ion-label floating>Email</ion-label>
-      <ion-input [(ngModel)]="form.email" type="email" name="email"></ion-input>
+      <ion-input [formControl]="loginForm.controls['email']" [(ngModel)]="form.email" type="email"></ion-input>
     </ion-item>
+    <ion-label *ngIf="loginForm.controls['email'].hasError('pattern') && loginForm.controls['email'].touched" class="error">
+      This is not a valid email!
+    </ion-label>
+    <ion-label *ngIf="loginForm.controls['email'].hasError('required') && loginForm.controls['email'].touched" class="error">
+          This is required!
+    </ion-label>
+    <!--End Form Email-->
+
+    <!--Form Password-->
     <ion-item>
       <ion-label floating>Password</ion-label>
-      <ion-input [(ngModel)]="form.password" name="password"  type="password"></ion-input>
+      <ion-input [formControl]="loginForm.controls['password']" [(ngModel)]="form.password"  type="password"></ion-input>
     </ion-item>
+
+    <ion-label *ngIf="loginForm.controls['password'].hasError('minlength') && loginForm.controls['password'].touched" class="error">
+      Must be at least 8 characters!
+    </ion-label>
+    <ion-label *ngIf="loginForm.controls['password'].hasError('required') && loginForm.controls['password'].touched" class="error">
+      This is required!
+    </ion-label>
+    <!--End Form Password-->
+
     <button [disabled]="!loginForm.valid" (click)="loginEmail()" ion-button type="submit" block>Login</button>
 
   </form>
@@ -52,15 +72,34 @@
 
     <ion-slide>
       <h1>Register</h1>
-      <form #registerForm="ngForm">
+      <form [formGroup]="registerForm">
+
+        <!--Form Email-->
         <ion-item>
           <ion-label floating>Email</ion-label>
-          <ion-input [(ngModel)]="form.email" name="email" type="email"></ion-input>
+          <ion-input [formControl]="registerForm.controls['email']" [(ngModel)]="form.email" type="email"></ion-input>
         </ion-item>
+        <ion-label *ngIf="registerForm.controls['email'].hasError('pattern') && registerForm.controls['email'].touched" class="error">
+          This is not a valid email!
+        </ion-label>
+        <ion-label *ngIf="registerForm.controls['email'].hasError('required') && registerForm.controls['email'].touched" class="error">
+          This is required!
+        </ion-label>
+        <!--End Form Email-->
+
+        <!--Form Password-->
         <ion-item>
           <ion-label floating>Password</ion-label>
-          <ion-input [(ngModel)]="form.password" name="password" type="password"></ion-input>
+          <ion-input [formControl]="registerForm.controls['password']" [(ngModel)]="form.password" type="password"></ion-input>
         </ion-item>
+        <ion-label *ngIf="registerForm.controls['password'].hasError('minlength') && registerForm.controls['password'].touched" class="error">
+          Must be at least 8 characters!
+        </ion-label>
+        <ion-label *ngIf="registerForm.controls['password'].hasError('required') && registerForm.controls['password'].touched" class="error">
+          This is required!
+        </ion-label>
+        <!--End Form Password-->
+
         <button (click)="register()" [disabled]="!registerForm.valid" ion-button type="submit" block>Sign Up</button>
       </form>
       <br margin>

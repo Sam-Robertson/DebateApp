@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavParams, Nav, LoadingController } from 'ionic-angular';
 import { TermsPage } from '../pages';
 import { AuthService } from '../../providers/auth-service';
-import {FormBuilder, Validators, AbstractControl} from '@angular/forms';
+import {FormGroup, Validators, FormBuilder} from '@angular/forms';
 /*
   Generated class for the Login page.
 
@@ -17,12 +17,22 @@ export class LoginPage {
 
   form: any;
   error: any;
+  loginForm: FormGroup;
+  registerForm: FormGroup;
 
-  constructor(public nav: Nav, public navParams: NavParams, private _auth: AuthService, public loadingCtrl: LoadingController) {
+  constructor(private formBuilder: FormBuilder, public nav: Nav, public navParams: NavParams, private _auth: AuthService, public loadingCtrl: LoadingController) {
     this.form = {
       email: '',
       password: ''
-    }
+    };
+    this.loginForm = formBuilder.group({
+      'email' : [null, Validators.compose([Validators.required, Validators.pattern('[A-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')])],
+      'password': [null, Validators.compose([Validators.required, Validators.minLength(8)])],
+    });
+    this.registerForm = formBuilder.group({
+      'email' : [null, Validators.compose([Validators.required, Validators.pattern('[A-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')])],
+      'password': [null, Validators.compose([Validators.required, Validators.minLength(8)])],
+    });
   }
 
 
