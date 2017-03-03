@@ -15,6 +15,7 @@ import {AuthService} from '../../providers/auth-service';
 })
 export class SettingsPage {
 
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public modalCtrl: ModalController, public nav: Nav,
               private _auth: AuthService) { }
    username = this._auth.displayName();
@@ -65,7 +66,7 @@ export class SettingsPage {
     profileModal.present();
   }
 
-
+  
 //   Imagestuff () {
 //     let lastImage = newfilename;
 //     console.log(newfilename);
@@ -76,15 +77,16 @@ export class SettingsPage {
 // })
 // export class InitialsPipe implements PipeTransform {
 //   transform(value: string): string {
-//     let Myfirst = value.length[1];
-//     let MySecond =
-//     {
-//
+//     let Myfirst = value.length[0];
+//     for (var char of username) {
+//       if (value.[i] === " " ){
+//         ;
+//       }
 //     }
 //   }
 // }
-//
-//
+
+
 
 
 

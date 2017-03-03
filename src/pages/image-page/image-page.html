@@ -5,7 +5,7 @@
       Ionic2 Firebase Storage App
     </ion-title>
     <ion-buttons end>
-      <button (click)="doGetPicture()">PHOTO</button>
+      <button ion-button rounded (click)="doGetPicture()">PHOTO</button>
     </ion-buttons>
   </ion-navbar>
 </ion-header>
@@ -15,7 +15,9 @@
   <ion-list>
 
     <ion-item *ngFor="let item of assetCollection ; trackBy:trackByFunction">
-      <item-component [item]="item"></item-component>
+      <p>{{i}} - {{item.name}}</p>
+      <p>{{item.lastUpdated}}</p>
+      <img [src]=item.URL class="padding"/>
     </ion-item>
   </ion-list>
 

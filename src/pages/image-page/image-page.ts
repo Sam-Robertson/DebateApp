@@ -1,6 +1,6 @@
 
 import { Component, ChangeDetectionStrategy, Input, NgZone } from '@angular/core';
-import { NavController, Platform } from 'ionic-angular';
+import { NavController, Platform, ViewController } from 'ionic-angular';
 import { Http } from '@angular/http';
 import { Camera, Device } from 'ionic-native';
 import {Component} from '@angular/core';
@@ -24,7 +24,8 @@ export class ImagePage {
   constructor(public navCtrl: NavController,
               public platform: Platform,
               private http: Http,
-              private zone: NgZone
+              private zone: NgZone,
+              public viewCtrl: ViewController
   ) {
 
   constructor(private _storage: Storage, public navCtrl: NavController, public actionSheetCtrl: ActionSheetController, public toastCtrl: ToastController, public platform: Platform, public loadingCtrl: LoadingController, public viewCtrl: ViewController) {
@@ -175,14 +176,12 @@ export class ImagePage {
       return cordova.file.dataDirectory + img;
     }
   }
+      this.viewCtrl.dismiss();
+  }
+}
 
 @Component({
   selector: "item-component",
-  template: `
-      <p>{{i}} - {{item.name}}</p>
-      <p>{{item.lastUpdated}}</p>
-      <img [src]=item.URL class="padding"/>  
-  `,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ItemComponent {
