@@ -101,4 +101,11 @@ export class AuthService{
     }
   }
 
+  setName(newName): void {
+      this.authState.auth.updateProfile({
+          displayName: newName,
+        photoURL: ''
+      });
+  }
+
 }

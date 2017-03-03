@@ -13,7 +13,7 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding overflow-scroll="true">
   <ion-title>Which side are you on?</ion-title>
   <a (click)="reset()">Reset</a>
   <div id="pro-con-container">
@@ -29,4 +29,7 @@
     </div>
   </div>
   <p id="description">{{topics[key].description}}</p>
+  <iframe class="twitter" width="100%" src="https://mobile.twitter.com/search?q=%23drinking%20age">
+      <p>Twitter</p>
+  </iframe>
 </ion-content>
