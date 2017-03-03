@@ -29,7 +29,9 @@
     </div>
   </div>
   <p id="description">{{topics[key].description}}</p>
-  <iframe class="twitter" width="100%" src="https://mobile.twitter.com/search?q=%23drinking%20age">
-      <p>Twitter</p>
-  </iframe>
+  <!--<a href="https://twitter.com/intent/tweet?button_hashtag={{topics[key].name | removeSpaces}}" class="twitter-hashtag-button" data-show-count="false">Tweet #{{topics[key].name|removeSpaces}}</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>-->
+
+  <a class="twitter-timeline" data-dnt="true" href="https://twitter.com/hashtag/{{topics[key].name | RemoveSpaces}}" data-widget-id="837707082656706560"></a>
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
 </ion-content>

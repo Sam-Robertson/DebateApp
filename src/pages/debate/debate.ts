@@ -5,6 +5,7 @@ import { AuthService } from "../../providers/auth-service";
 import {FirebaseService} from "../../providers/firebase-service";
 
 
+
 /*
   Generated class for the Debate page.
 
@@ -24,7 +25,7 @@ export class DebatePage {
   users: any[];
   firebaseUsers: FirebaseListObservable<any[]>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public af: AngularFire, private _auth: AuthService, public loadingCtrl: LoadingController, public fb: FirebaseService, private toastCtrl: ToastController) {
+  constructor( public navCtrl: NavController, public navParams: NavParams, public af: AngularFire, private _auth: AuthService, public loadingCtrl: LoadingController, public fb: FirebaseService, private toastCtrl: ToastController) {
     this.key = this.navParams.data;
     this.topics = this.fb.topics;
     this.firebaseTopics = this.fb.firebaseTopics;
@@ -34,9 +35,26 @@ export class DebatePage {
     });
   }
 
-  ionViewDidLoad() {
+  ionViewDidEnter() {
+console.log("hey");
+    (<any>window).twttr = (function(d, s, id) {
+      let js, fjs = d.getElementsByTagName(s)[0],
+        t = (<any>window).twttr || {};
+      if (d.getElementById(id)) return t;
+      js = d.createElement(s);
+      js.id = id;
+      js.src = "https://platform.twitter.com/widgets.js";
+      fjs.parentNode.insertBefore(js, fjs);
 
-    console.log('ionViewDidLoad DebatePage');
+      t._e = [];
+      t.ready = function(f) {
+        t._e.push(f);
+      };
+
+      return t;
+    }(document, "script", "twitter-wjs"));
+    (<any>window).twttr = null;
+
   }
 
   proClick(): void {
