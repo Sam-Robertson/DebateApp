@@ -5,6 +5,7 @@ import { AngularFireModule, AuthProviders, AuthMethods } from 'angularfire2';
 import {FirebaseService} from "../providers/firebase-service";
 import { AuthService } from '../providers/auth-service';
 import { Storage } from '../providers/storage';
+import {RemoveSpaces} from '../pipes/remove-spaces';
 
 
 import {HomePage, DebatePage, LoginPage, SettingsPage, TermsPage} from '../pages/pages';
@@ -31,6 +32,7 @@ const myFirebaseAuthConfig = {
     LoginPage,
     SettingsPage,
     TermsPage,
+    RemoveSpaces
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -45,6 +47,6 @@ const myFirebaseAuthConfig = {
     SettingsPage,
     TermsPage,
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, FirebaseService, AuthService, Storage]
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, FirebaseService, AuthService, Storage, RemoveSpaces]
 })
 export class AppModule {}
