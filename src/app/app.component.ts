@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
+import {Nav, Platform, MenuController} from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 import { AuthService } from '../providers/auth-service';
 import {HomePage, TermsPage, SettingsPage, LoginPage, DebatePage} from '../pages/pages';
@@ -16,11 +16,15 @@ export class MyApp {
   sub: any;
   fromLogin: boolean;
 
-  constructor(public platform: Platform, private _auth: AuthService) {
+  constructor(public platform: Platform, private _auth: AuthService, private menu: MenuController) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
 
+  }
+
+  ionViewDidEnter(): void {
+    this.menu.swipeEnable(false, "menu");
   }
 
   initializeApp() {
