@@ -24,7 +24,7 @@ export class MyApp {
   }
 
   ionViewDidEnter(): void {
-    this.menu.swipeEnable(false, "menu");
+    this.menu.swipeEnable(false);
   }
 
   initializeApp() {

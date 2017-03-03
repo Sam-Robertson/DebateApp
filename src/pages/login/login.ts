@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavParams, Nav, LoadingController } from 'ionic-angular';
+import {NavParams, Nav, LoadingController, MenuController} from 'ionic-angular';
 import { TermsPage } from '../pages';
 import { AuthService } from '../../providers/auth-service';
 import {FormGroup, Validators, FormBuilder} from '@angular/forms';
@@ -20,7 +20,7 @@ export class LoginPage {
   loginForm: FormGroup;
   registerForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, public nav: Nav, public navParams: NavParams, private _auth: AuthService, public loadingCtrl: LoadingController) {
+  constructor(private formBuilder: FormBuilder, public nav: Nav, public navParams: NavParams, private _auth: AuthService, public loadingCtrl: LoadingController, public menu: MenuController) {
     this.form = {
       email: '',
       password: ''
@@ -33,6 +33,11 @@ export class LoginPage {
       'email' : [null, Validators.compose([Validators.required, Validators.pattern('[A-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')])],
       'password': [null, Validators.compose([Validators.required, Validators.minLength(8)])],
     });
+  }
+
+  ionViewDidEnter() {
+    this.menu.swipeEnable(false);
+    console.log("Swipe Enable");
   }
 
 
