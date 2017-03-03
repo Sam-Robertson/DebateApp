@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import {NavController, NavParams, MenuController} from 'ionic-angular';
 import { SettingsPage } from "../settings/settings";
 import { LoadingController } from "ionic-angular/index";
 import { DebatePage } from "../debate/debate";
@@ -21,11 +21,15 @@ import { AngularFire, FirebaseObjectObservable } from "angularfire2";
 export class HomePage {
   public arrayOfKeys;
   topics: any[];
-  constructor(public navCtrl: NavController, public navParams: NavParams, public loadingController: LoadingController, public af: AngularFire) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public loadingController: LoadingController, public af: AngularFire, public menu: MenuController) {
     af.database.list("/topics").subscribe(data => {
       this.topics = data;
       this.arrayOfKeys = Object.keys(this.topics);
     });
+  }
+
+  ionViewDidEnter() {
+    this.menu.swipeEnable(false);
   }
 
   goToSettings(): void {
