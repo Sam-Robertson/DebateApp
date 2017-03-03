@@ -87,6 +87,7 @@ loginEmail(): void {
     setTimeout(() => {
       loading.dismiss();
       // The auth subscribe method inside the app.ts will handle the page switch to home
+
     }, 1000);
   }, err => {
     setTimeout(() => {
@@ -94,6 +95,7 @@ loginEmail(): void {
       this.error = err;
     }, 1000);
   });
+
 }
 
 
