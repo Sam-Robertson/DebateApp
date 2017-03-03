@@ -3,6 +3,10 @@ import { Component, ChangeDetectionStrategy, Input, NgZone } from '@angular/core
 import { NavController, Platform } from 'ionic-angular';
 import { Http } from '@angular/http';
 import { Camera, Device } from 'ionic-native';
+import {Component} from '@angular/core';
+import {NavController, ActionSheetController, ToastController, Platform, LoadingController, Loading, ViewController} from 'ionic-angular';
+import { Camera, File, Transfer, FilePath } from 'ionic-native';
+import { Storage } from '../../providers/storage';
 
 import * as firebase from 'firebase';
 
@@ -23,6 +27,7 @@ export class ImagePage {
               private zone: NgZone
   ) {
 
+  constructor(private _storage: Storage, public navCtrl: NavController, public actionSheetCtrl: ActionSheetController, public toastCtrl: ToastController, public platform: Platform, public loadingCtrl: LoadingController, public viewCtrl: ViewController) {
   }
 
   trackByFunction(index, item) {
@@ -91,6 +96,7 @@ export class ImagePage {
         resolve(uploadTask.snapshot);
       });
     });
+    actionSheet.present();
   }
 
   saveToDatabaseAssetList(_uploadSnapshot) {
@@ -150,11 +156,25 @@ export class ImagePage {
     }, (_error) => {
       alert('Error ' + (_error.message || _error));
     });
-
-
-
   }
-}
+
+  private presentToast(text) {
+    let toast = this.toastCtrl.create({
+      message: text,
+      duration: 3000,
+      position: 'top'
+    });
+    toast.present();
+  }
+
+// Always get the accurate path to your apps folder
+  public pathForImage(img) {
+    if (img === null) {
+      return '';
+    } else {
+      return cordova.file.dataDirectory + img;
+    }
+  }
 
 @Component({
   selector: "item-component",
@@ -171,7 +191,35 @@ export class ItemComponent {
 
   constructor() {
 
+  public uploadImage() {
+    this._storage.uploadImage(this.lastImage);
+  }
+  dismiss() {
+    this.viewCtrl.dismiss();
   }
 }
+
+
+
+
+
+// @Injectable()
+// export class myImage {
+//   newfilename;
+// }
+
+
+
+//   private pushImage(): void {
+//     this.navCtrl.push(filename, targetPath);
+//   }
+//
+
+
+
+
+
+
+
 
 
