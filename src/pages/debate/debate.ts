@@ -36,7 +36,6 @@ export class DebatePage {
   }
 
   ionViewDidEnter() {
-console.log("hey");
     (<any>window).twttr = (function(d, s, id) {
       let js, fjs = d.getElementsByTagName(s)[0],
         t = (<any>window).twttr || {};
@@ -53,7 +52,8 @@ console.log("hey");
 
       return t;
     }(document, "script", "twitter-wjs"));
-    (<any>window).twttr = null;
+
+    (<any>window).twttr.widgets.load();     //makes twitter load on every page
 
   }
 
