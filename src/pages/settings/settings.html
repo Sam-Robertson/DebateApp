@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header xmlns="http://www.w3.org/1999/html">
   <ion-navbar>
     <ion-title>
       Account Settings
@@ -9,18 +9,17 @@
 <ion-content>
   <ion-list>
     <ion-list-header> {{username}} </ion-list-header>
+    <ion-list-header> Set Username </ion-list-header>
+    <ion-input [(ngModel)]="name" > New Username</ion-input>
+    <button ion-button (click)="changeName(name)">Submit </button>
+
 
     <ion-list-header> Change Username </ion-list-header>
     <ion-input  type="text" id="usInput"> </ion-input>
-    <button (click)="changeUsername(name)" >Change Username</button>
 
 
-    <ion-list-header>Profile Image</ion-list-header>
-    <!--<img src="{{pathForImage(lastImage)}}" style="width: 100%" [hidden]="lastImage === null">-->
-      <h1 class="profile-initials" text-uppercase padding > {{username }} </h1>
 
 
-    <button (click)="presentProfileModal()" >Change Profile Image</button>
 
 
     <ion-list-header>Other Options</ion-list-header>
