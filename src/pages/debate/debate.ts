@@ -4,8 +4,6 @@ import { AngularFire, FirebaseListObservable } from "angularfire2";
 import { AuthService } from "../../providers/auth-service";
 import {FirebaseService} from "../../providers/firebase-service";
 
-
-
 /*
   Generated class for the Debate page.
 
