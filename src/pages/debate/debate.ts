@@ -122,11 +122,13 @@ export class DebatePage {
     this.topics[this.key].conClicks = 0;
     this.topics[this.key].proClicks = 0;
     this.topics[this.key].totalClicks = 0;
+    this.users[this.key].chosen = "none";
     this.firebaseTopics.update(this.key , {proPercent: this.topics[this.key].proPercent});
     this.firebaseTopics.update(this.key , {conPercent: this.topics[this.key].conPercent});
     this.firebaseTopics.update(this.key , {conClicks: this.topics[this.key].conClicks});
     this.firebaseTopics.update(this.key , {proClicks: this.topics[this.key].proClicks});
     this.firebaseTopics.update(this.key , {totalClicks: this.topics[this.key].totalClicks});
+    this.firebaseUsers.update(this.key, {chosen: this.users[this.key].chosen});
   }
 
   presentToast() {
