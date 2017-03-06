@@ -1,92 +1,161 @@
+
+import { Component, ChangeDetectionStrategy, Input, NgZone } from '@angular/core';
+import { NavController, Platform, ViewController } from 'ionic-angular';
+import { Http } from '@angular/http';
+import { Camera, Device } from 'ionic-native';
 import {Component} from '@angular/core';
 import {NavController, ActionSheetController, ToastController, Platform, LoadingController, Loading, ViewController} from 'ionic-angular';
 import { Camera, File, Transfer, FilePath } from 'ionic-native';
 import { Storage } from '../../providers/storage';
 
-declare var cordova: any;
+import * as firebase from 'firebase';
+
+declare var window: any;
 
 
 @Component({
-  selector: 'page-image',
-  templateUrl: 'image-page.html'
+  templateUrl: 'image-page.html',
 })
-
 export class ImagePage {
-  lastImage: string = null;
-  loading: Loading;
+
+  assetCollection
+  userAuth: any
+
+  constructor(public navCtrl: NavController,
+              public platform: Platform,
+              private http: Http,
+              private zone: NgZone,
+              public viewCtrl: ViewController
+  ) {
 
   constructor(private _storage: Storage, public navCtrl: NavController, public actionSheetCtrl: ActionSheetController, public toastCtrl: ToastController, public platform: Platform, public loadingCtrl: LoadingController, public viewCtrl: ViewController) {
   }
 
-  public presentActionSheet() {
-    let actionSheet = this.actionSheetCtrl.create({
-      title: 'Select Image Source',
-      buttons: [
-        {
-          text: 'Load from Library',
-          handler: () => {
-            this.takePicture(Camera.PictureSourceType.PHOTOLIBRARY);
-          }
-        },
-        {
-          text: 'Use Camera',
-          handler: () => {
-            this.takePicture(Camera.PictureSourceType.CAMERA);
-          }
-        },
-        {
-          text: 'Cancel',
-          role: 'cancel'
-        }
-      ]
+  trackByFunction(index, item) {
+    return item.id
+  }
+
+
+  loadData() {
+    var result = [];
+    // load data from firebase...
+    firebase.database().ref('assets').orderByKey().once('value', (_snapshot: any) => {
+
+      _snapshot.forEach((_childSnapshot) => {
+        // get the key/id and the data for display
+        var element = _childSnapshot.val();
+        element.id = _childSnapshot.key;
+
+        result.push(element);
+      });
+
+      this.assetCollection = result;
+
+    });
+  }
+
+  makeFileIntoBlob(_imagePath) {
+
+    // INSTALL PLUGIN - cordova plugin add cordova-plugin-file
+    return new Promise((resolve, reject) => {
+      window.resolveLocalFileSystemURL(_imagePath, (fileEntry) => {
+
+        fileEntry.file((resFile) => {
+
+          var reader = new FileReader();
+          reader.onloadend = (evt: any) => {
+            var imgBlob: any = new Blob([evt.target.result], { type: 'image/jpeg' });
+            imgBlob.name = 'sample.jpg';
+            resolve(imgBlob);
+          };
+
+          reader.onerror = (e) => {
+            console.log('Failed file read: ' + e.toString());
+            reject(e);
+          };
+
+          reader.readAsArrayBuffer(resFile);
+        });
+      });
+    });
+  }
+
+  uploadToFirebase(_imageBlob) {
+    var fileName = 'sample-' + new Date().getTime() + '.jpg';
+
+    return new Promise((resolve, reject) => {
+      var fileRef = firebase.storage().ref('images/' + fileName);
+
+      var uploadTask = fileRef.put(_imageBlob);
+
+      uploadTask.on('state_changed', (_snapshot) => {
+        console.log('snapshot progess ' + _snapshot);
+      }, (_error) => {
+        reject(_error);
+      }, () => {
+        // completion...
+        resolve(uploadTask.snapshot);
+      });
     });
     actionSheet.present();
   }
 
-  public takePicture(sourceType) {
-    // Create options for the Camera Dialog
-    var options = {
-      quality: 100,
-      sourceType: sourceType,
-      saveToPhotoAlbum: false,
-      correctOrientation: true
-    };
+  saveToDatabaseAssetList(_uploadSnapshot) {
+    var ref = firebase.database().ref('assets');
 
-    // Get the data of an image
-    Camera.getPicture(options).then((imagePath) => {
-      // Special handling for Android library
-      if (this.platform.is('android') && sourceType === Camera.PictureSourceType.PHOTOLIBRARY) {
-        FilePath.resolveNativePath(imagePath)
-          .then(filePath => {
-            let correctPath = filePath.substr(0, filePath.lastIndexOf('/') + 1);
-            let currentName = imagePath.substring(imagePath.lastIndexOf('/') + 1, imagePath.lastIndexOf('?'));
-            this.copyFileToLocalDir(correctPath, currentName, this.createFileName());
-          });
-      } else {
-        var currentName = imagePath.substr(imagePath.lastIndexOf('/') + 1);
-        var correctPath = imagePath.substr(0, imagePath.lastIndexOf('/') + 1);
-        this.copyFileToLocalDir(correctPath, currentName, this.createFileName());
-      }
-    }, (err) => {
-      this.presentToast('Error while selecting image.');
+    return new Promise((resolve, reject) => {
+
+      // we will save meta data of image in database
+      var dataToSave = {
+        'URL': _uploadSnapshot.downloadURL, // url to access file
+        'name': _uploadSnapshot.metadata.name, // name of the file
+        'owner': firebase.auth().currentUser.uid,
+        'email': firebase.auth().currentUser.email,
+        'lastUpdated': new Date().getTime(),
+      };
+
+      ref.push(dataToSave, (_response) => {
+        resolve(_response);
+      }).catch((_error) => {
+        reject(_error);
+      });
     });
-  }
 
-  // Create a new name for the image
-  private createFileName() {
-    var d = new Date(),
-      n = d.getTime(),
-      newFileName = n + ".jpg";
-    return newFileName;
   }
 
 
-// Copy the image to a local folder
-  private copyFileToLocalDir(namePath, currentName, newFileName) {
-    File.copyFile(namePath, currentName, cordova.file.dataDirectory, newFileName).then(success => {
-      this.lastImage = newFileName;
-    }, error => {
-      this.presentToast('Error while storing file.');
+  doGetPicture() {
+
+    // TODO:
+    // get picture from camera
+
+    console.log(Device)
+    let imageSource = (Device.isVirtual ? Camera.PictureSourceType.PHOTOLIBRARY : Camera.PictureSourceType.CAMERA);
+
+    Camera.getPicture({
+      destinationType: Camera.DestinationType.FILE_URI,
+      sourceType: imageSource,
+      targetHeight: 640,
+      correctOrientation: true
+    }).then((_imagePath) => {
+      alert('got image path ' + _imagePath);
+      // convert picture to blob
+      return this.makeFileIntoBlob(_imagePath);
+    }).then((_imageBlob) => {
+      alert('got image blob ' + _imageBlob);
+
+      // upload the blob
+      return this.uploadToFirebase(_imageBlob);
+    }).then((_uploadSnapshot: any) => {
+      alert('file uploaded successfully  ' + _uploadSnapshot.downloadURL);
+
+      // store reference to storage in database
+      return this.saveToDatabaseAssetList(_uploadSnapshot);
+
+    }).then((_uploadSnapshot: any) => {
+      alert('file saved to asset catalog successfully  ');
+    }, (_error) => {
+      alert('Error ' + (_error.message || _error));
     });
   }
 
@@ -107,6 +176,19 @@ export class ImagePage {
       return cordova.file.dataDirectory + img;
     }
   }
+      this.viewCtrl.dismiss();
+  }
+}
+
+@Component({
+  selector: "item-component",
+  changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class ItemComponent {
+
+  @Input() item: any;
+
+  constructor() {
 
   public uploadImage() {
     this._storage.uploadImage(this.lastImage);

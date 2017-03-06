@@ -10,13 +10,18 @@
   <ion-list>
     <ion-list-header> {{username}} </ion-list-header>
 
+    <ion-list-header> Change Username </ion-list-header>
+    <ion-input  type="text" id="usInput"> </ion-input>
+    <button (click)="changeUsername(name)" >Change Username</button>
+
 
     <ion-list-header>Profile Image</ion-list-header>
     <!--<img src="{{pathForImage(lastImage)}}" style="width: 100%" [hidden]="lastImage === null">-->
-      <h1 class="profile-initials" text-uppercase padding > SR </h1>
+      <h1 class="profile-initials" text-uppercase padding > {{username }} </h1>
 
 
     <button (click)="presentProfileModal()" >Change Profile Image</button>
+
 
     <ion-list-header>Other Options</ion-list-header>
     <button ion-button (click)="showColorAlert()">Make Color Blind Friendly</button>
