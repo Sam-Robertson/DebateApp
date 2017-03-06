@@ -21,6 +21,12 @@ export class SettingsPage {
 
   username: string = this._auth.displayName();
 
+  changeName(name) {
+    this._auth.setName(name);
+    this.username = this._auth.displayName();
+
+  }
+
   // initials =  I need to filter the username in order to get the initials
 
   showColorAlert() {

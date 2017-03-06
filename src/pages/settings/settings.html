@@ -7,25 +7,30 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-list-header> {{username}} </ion-list-header>
-    <ion-list-header> Set Username </ion-list-header>
-    <ion-input [(ngModel)]="name" > New Username</ion-input>
-    <button ion-button (click)="changeName(name)">Submit </button>
+  <ion-list id="shiftleft">
 
 
-    <ion-list-header> Change Username </ion-list-header>
-    <ion-input  type="text" id="usInput"> </ion-input>
+      <h5 id="CurrentUsername"> Current Username: </h5>
+       <h6 id="username">{{username}}</h6>
+    <ion-item></ion-item>
+
+
+      <h5 id="SetUsername"> Set Username </h5>
+    <ion-item id="inputItem">
+      <ion-label floating>New Username</ion-label>
+      <ion-input id="NewUsername" [(ngModel)]="name"  type="text"></ion-input>
+    </ion-item>
+      <button id="SubmitButton" ion-button (click)="changeName(name)">Submit </button>
+    <ion-item></ion-item>
 
 
 
 
+        <h5 id="OtherOptions">Other Options</h5>
+        <button ion-button (click)="showColorAlert()">Make Color Blind Friendly</button>
+    <ion-item></ion-item>
 
-
-    <ion-list-header>Other Options</ion-list-header>
-    <button ion-button (click)="showColorAlert()">Make Color Blind Friendly</button>
-
-    <button menuClose (click)="logout()" ion-item>Logout</button>
+    <button id="logout" ion-button menuClose (click)="logout()">Logout</button>
 
   </ion-list>
 </ion-content>

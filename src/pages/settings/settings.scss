@@ -1,19 +1,34 @@
 page-settings {
 
 }
-.profile-image {
-  background-color: #8e9093;
-  width: 10%;
-  height: 10px;
 
-}
-.profile-initials{
-  font-size: large;
+#NewUsername {
 
 
 }
-#usInput {
-  border: 1px solid gray;
-  width: 37%;
-  height: 25px;
+#SubmitButton{
+ margin-bottom: 3%;
+}
+#logout{
+  margin-top: 3%;
+}
+#inputItem{
+
+}
+#username{
+  padding-left: 1%;
+  margin-bottom: 3%;
+}
+#CurrentUsername{
+  text-decoration: underline;
+}
+#SetUsername{
+  text-decoration: underline
+}
+#OtherOptions {
+  text-decoration: underline;
+  margin-bottom: 1%;
+}
+#shiftleft{
+  margin-left: 1%;
 }
