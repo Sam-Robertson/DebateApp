@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {NavParams, Nav, LoadingController, MenuController} from 'ionic-angular';
+import {NavParams, Nav, LoadingController, MenuController, ToastController, Platform} from 'ionic-angular';
 import { TermsPage } from '../pages';
 import { AuthService } from '../../providers/auth-service';
 import {FormGroup, Validators, FormBuilder} from '@angular/forms';
@@ -20,7 +20,7 @@ export class LoginPage {
   loginForm: FormGroup;
   registerForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, public nav: Nav, public navParams: NavParams, private _auth: AuthService, public loadingCtrl: LoadingController, public menu: MenuController) {
+  constructor(private platform: Platform, private toastCtrl: ToastController, private formBuilder: FormBuilder, public nav: Nav, public navParams: NavParams, private _auth: AuthService, public loadingCtrl: LoadingController, public menu: MenuController) {
     this.form = {
       email: '',
       password: ''
@@ -47,6 +47,9 @@ export class LoginPage {
     });
 
     loader.present();
+    if(this.platform.is('cordova')){
+      loader.dismiss();
+    }
     this._auth.signInWithGoogle()
       .then(() => {
       loader.dismiss();
@@ -102,7 +105,14 @@ loginEmail(): void {
   });
 
 }
-
+browseGuest():void {
+  let toast = this.toastCtrl.create({
+    message: "This feature is coming soon...",
+    duration: 3000,
+    position: "bottom"
+  });
+  toast.present();
+}
 
 
 
