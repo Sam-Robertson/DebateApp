@@ -33,27 +33,7 @@ export class DebatePage {
     });
   }
 
-  ionViewDidEnter() {
-    (<any>window).twttr = (function(d, s, id) {
-      let js, fjs = d.getElementsByTagName(s)[0],
-        t = (<any>window).twttr || {};
-      if (d.getElementById(id)) return t;
-      js = d.createElement(s);
-      js.id = id;
-      js.src = "https://platform.twitter.com/widgets.js";
-      fjs.parentNode.insertBefore(js, fjs);
 
-      t._e = [];
-      t.ready = function(f) {
-        t._e.push(f);
-      };
-
-      return t;
-    }(document, "script", "twitter-wjs"));
-
-    (<any>window).twttr.widgets.load();     //makes twitter load on every page
-
-  }
 
   proClick(): void {
     if(this.users[this.key].chosen == "none"){
